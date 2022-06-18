@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { Sidebar } from './Sidebar';
 import styled from 'styled-components';
+import { Header } from './Header';
 
 type Props = {
   children: ReactNode;
@@ -11,7 +12,11 @@ export const Layout = (props: Props) => {
     <>
       <FlexBox>
         <Sidebar />
-        <FlexItem>{props.children}</FlexItem>
+
+        <FlexItem>
+          <Header />
+          {props.children}
+        </FlexItem>
       </FlexBox>
     </>
   );
