@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -31,6 +31,10 @@ body {
 }
 ol, ul {
 	list-style: none;
+	padding: 0;
+}
+li {
+	padding: 0;
 }
 blockquote, q {
 	quotes: none;
@@ -44,4 +48,4 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-`
+`;

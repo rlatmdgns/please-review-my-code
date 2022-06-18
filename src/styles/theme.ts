@@ -31,6 +31,6 @@ export const FlexColumn = styled(FlexBox)`
 
 export const Divider = styled.hr`
   width: 100%;
-  border-top: 3px solid #bb;
+  border-top: 1px solid #8e8e8e;
   margin: 0px;
 `;
