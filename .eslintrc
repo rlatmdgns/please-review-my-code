@@ -6,6 +6,20 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    "import/no-cycle": 0
+    "import/no-cycle": 0,
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": true,
+        "useTabs": false,
+        "tabWidth": 2,
+        "trailingComma": "all",
+        "printWidth": 120,
+        "bracketSpacing": true,
+        "arrowParens": "avoid",
+        "endOfLine": "auto"
+      }
+    ]
   }
 }
