@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import CreateReview from './pages/CreateReview';
+import CreateReview from './domain/CreateReview';
 
 function App() {
   return (
