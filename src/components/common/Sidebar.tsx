@@ -13,11 +13,12 @@ export const Sidebar = () => {
   );
 };
 
-const Wrapper = styled(FlexCenter)`
+const Wrapper = styled.div`
   width: 200px;
   height: 100vh;
   border-right: 1px solid #8e8e8e;
-  background-color: #62403a;
+  color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.primary};
 `;
 
 const Title = styled.h1`
@@ -30,5 +31,4 @@ const Title = styled.h1`
 const Menu = styled.div`
   margin: 40px 0;
   font-size: 24px;
-
 `;
