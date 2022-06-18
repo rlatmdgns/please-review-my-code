@@ -9,8 +9,6 @@ export const Header = () => {
 
   const toggleMenu = () => {
     setActive(!active);
-
-    console.log(active);
   };
 
   const handleLoginButtonClick = async () => {
