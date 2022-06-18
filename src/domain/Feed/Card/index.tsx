@@ -1,4 +1,4 @@
-import { FlexBox, FlexBoxRight, Divider, Box } from 'styles/theme';
+import { FlexBox, FlexCenter, Divider, Box } from 'styles/theme';
 import * as Style from './styles';
 
 export const Card = () => {
@@ -22,11 +22,11 @@ export const Card = () => {
         <FlexBox>
           <Style.Writer>아이디</Style.Writer>
         </FlexBox>
-        <FlexBoxRight>
+        <FlexCenter>
           <Style.Like>💙</Style.Like>
           <Box width="10px" />
           <Style.Comments>💬</Style.Comments>
-        </FlexBoxRight>
+        </FlexCenter>
       </Style.BottomContainer>
     </Style.Wrapper>
   );
