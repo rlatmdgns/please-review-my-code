@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Feed />} />
         <Route path="/createReview" element={<CreateReview />} />
-        <Route path="/test" element={<Sample />} />
+        <Route path="/sample" element={<Sample />} />
       </Routes>
     </AuthProvider>
   );
