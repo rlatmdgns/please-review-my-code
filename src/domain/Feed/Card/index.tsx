@@ -1,8 +1,12 @@
 import { FlexBox, FlexBoxRight, Divider, Box } from 'styles/theme';
 import * as Style from './styles';
 import { Labels, Wrapper, BottomContainer, Category, Title, Label, Date } from './styles';
+import { useContext } from 'react';
+import { AuthContext } from '../../../utils/firebase';
 
 export const Card = () => {
+  const user = useContext(AuthContext);
+
   return (
     <Wrapper>
       <Category>디버깅</Category>

@@ -6,6 +6,7 @@ export const Wrapper = styled(FlexColumn)`
   border: 1px solid #dedede;
   padding: 20px;
   flex: 1 1 30%;
+  background: #fff;
 `;
 
 export const Category = styled.p`
