@@ -21,6 +21,7 @@ const Feed = () => {
             <Skill>Javascript</Skill>
           </FlexBox>
         </FlexColumn>
+        <Box height="40px" />
         <CardContainer>
           <Card />
           <Card />
@@ -40,9 +41,8 @@ const Wrapper = styled(FlexColumn)`
 `;
 
 const CardContainer = styled(FlexBox)`
-  margin-top: 40px;
   flex-wrap: wrap;
-  background-color: teal;
+  gap: 20px 10px;
 `;
 
 const Category = styled.div`

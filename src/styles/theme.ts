@@ -16,6 +16,10 @@ export const FlexBox = styled.div`
   display: flex;
 `;
 
+export const FlexBoxRight = styled(FlexBox)`
+  align-items: center;
+`;
+
 export const FlexCenter = styled(FlexBox)`
   justify-content: center;
   align-items: center;
@@ -23,4 +27,10 @@ export const FlexCenter = styled(FlexBox)`
 
 export const FlexColumn = styled(FlexBox)`
   flex-direction: column;
+`;
+
+export const Divider = styled.hr`
+  width: 100%;
+  border-top: 3px solid #bb;
+  margin: 0px;
 `;
