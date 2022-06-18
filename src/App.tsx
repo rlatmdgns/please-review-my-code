@@ -1,11 +1,12 @@
+import CreateReview from 'domain/CreateReview';
 import { Routes, Route } from 'react-router-dom';
-import { Feed } from './pages/Feed';
+import Feed from './domain/Feed';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Feed />}></Route>
-      {/* <Route path='/detail' element={<Detail />}></Route> */}
+      <Route path="/createReview" element={<CreateReview />}></Route>
     </Routes>
   );
 }

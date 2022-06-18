@@ -7,6 +7,11 @@ export const theme = {
   },
 };
 
+export const Box = styled.div<{ width?: string; height?: string }>`
+  ${(props) => props.width && `width: ${props.width}`};
+  ${(props) => props.height && `height: ${props.height}`};
+`;
+
 export const FlexBox = styled.div`
   display: flex;
 `;
