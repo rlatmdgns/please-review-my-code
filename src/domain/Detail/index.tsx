@@ -1,11 +1,39 @@
 import { Box, FlexBox, FlexColumnCenter, Divider } from 'styles/theme';
+import { useParams } from 'react-router-dom';
 import { Post } from 'utils/types/post';
 import CodeBlock from './CodeBlock';
 import CodeComment from './CodeComment';
 import Comment from './Comment';
 import * as Style from './style';
+import { useEffect, useState } from 'react';
+
+function getPostData(id: number): Promise<Post> {
+  const dummyData: Post[] = [
+    {
+      title: '타이틀타이틀',
+      content: '<p>jjljkljljkljljkljkljlkjkljㅌㅋㅌㅇㅁㄴㅇㅁ</p>',
+      code: 'function test(){\n    console.log(1)\n}\n',
+      tag: ['tag1', 'tag2'],
+      category: '디버깅',
+      date: '2020-03-14',
+    },
+
+    {
+      title: '타이틀타이틀2',
+      content: '<p>jjljkljljkljljkljkljlkjkljㅌㅋㅌㅇㅁㄴㅇㅁ</p>',
+      code: 'function test(){\n    console.log(1)\n}\n',
+      tag: ['tag1', 'tag2'],
+      category: '디버깅',
+      date: '2020-03-14',
+    },
+  ];
+
+  return new Promise((resolve) => resolve(dummyData[id]));
+}
 
 const Detail = ({ title, content, tag, category, date, comment }: Post) => {
+  const { id } = useParams();
+
   return (
     <Style.Wrapper>
       <FlexBox>
