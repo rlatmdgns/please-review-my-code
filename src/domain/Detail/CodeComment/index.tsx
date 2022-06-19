@@ -1,5 +1,5 @@
 const CodeComment = () => {
-  return <div>Code Comment</div>;
+  return <>codecomment</>;
 };
 
 export default CodeComment;
