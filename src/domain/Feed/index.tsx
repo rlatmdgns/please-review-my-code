@@ -49,7 +49,6 @@ const CategoryBox = styled.ul`
   display: flex;
   position: relative;
   margin-bottom: 40px;
-<<<<<<< HEAD
   padding: 24px 0;
   border-bottom: 1px solid #8e8e8e;
 `;
@@ -63,7 +62,6 @@ const Bar = styled.div<{ index: number }>`
   background-color: ${({ theme }) => theme.color.primary};
   transition: all 0.4s ease-in-out;
   transform: ${(props) => `translateX(calc(150*${props.index}px))`};
-=======
   border-bottom: 1px solid #dedede;
 `;
 
@@ -78,35 +76,32 @@ const Category = styled.li<{ active?: boolean }>`
   padding: 24px 0;
   border-bottom: 1px solid #333;
   border-bottom-color: ${(props) => (props.active ? '#333' : 'transparent')};
->>>>>>> 1fb2a9b1acad2c2cf4c72a7a14f1cf78d70738a4
 `;
 
 const CardContainer = styled(FlexBox)`
   flex-wrap: wrap;
-<<<<<<< HEAD
   gap: 20px 10px;
 `;
 
-const Category = styled.li<{ active?: boolean }>`
-  font-size: 24px;
-  font-weight: 600;
-  text-align: center;
-  width: 150px;
-  color: ${(props) => (props.active ? '#000000' : '#8e8e8e')};
-  cursor: pointer;
-`;
+// const Category = styled.li<{ active?: boolean }>`
+//   font-size: 24px;
+//   font-weight: 600;
+//   text-align: center;
+//   width: 150px;
+//   color: ${(props) => (props.active ? '#000000' : '#8e8e8e')};
+//   cursor: pointer;
+// `;
 
-const Skill = styled.div`
-  padding: 12px 20px;
-  border: 1px solid #8e8e8e;
-  border-radius: 40px;
-  margin-right: 24px;
-  font-size: 24px;
-  font-weight: 600;
-  cursor: pointer;
-=======
-  gap: 20px;
-`;
+// const Skill = styled.div`
+//   padding: 12px 20px;
+//   border: 1px solid #8e8e8e;
+//   border-radius: 40px;
+//   margin-right: 24px;
+//   font-size: 24px;
+//   font-weight: 600;
+//   cursor: pointer;
+//   gap: 20px;
+// `;
 
 const Skills = styled.ul`
   display: flex;
@@ -124,7 +119,6 @@ const Skill = styled.li`
   &:hover {
     border-color: #a9a9a9;
   }
->>>>>>> 1fb2a9b1acad2c2cf4c72a7a14f1cf78d70738a4
 `;
 
 export default Feed;
