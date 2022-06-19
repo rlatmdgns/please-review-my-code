@@ -1,12 +1,12 @@
 import React from 'react';
-import { TagInput } from './TagInput';
+import { Tag } from './Tag';
 import { TitleInput } from './TitleInput';
 
 const CreateReview = () => {
   return (
     <div>
       <TitleInput />
-      <TagInput />
+      <Tag />
     </div>
   );
 };
