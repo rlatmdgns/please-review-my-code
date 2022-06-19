@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useRef, useState } from 'react';
+import { FormEvent, useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Box, FlexBox, FlexCenter } from 'styles/theme';
 import { AuthContext } from 'utils/firebase';
@@ -23,7 +23,6 @@ const CodeBlock = (props: Code) => {
     name: '',
     content: '',
   });
-  const [value, setValue] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleLineClick = (idx: number) => {
@@ -44,13 +43,15 @@ const CodeBlock = (props: Code) => {
   const handleReviewSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(textareaRef.current?.defaultValue);
-
     setComment({
       name: (user && user.displayName) || '',
-      content: `${textareaRef.current?.defaultValue}`,
+      content: `${textareaRef.current?.value}`,
     });
+    setClickedLine(false);
+  };
 
+  useEffect(() => {
+    console.log(comment);
     fbService.createComment({
       author: comment.name,
       content: comment.content,
@@ -58,9 +59,7 @@ const CodeBlock = (props: Code) => {
       parentId: '',
       regDate: new Date(),
     });
-
-    setClickedLine(false);
-  };
+  }, [comment, postId]);
 
   return (
     <div>
