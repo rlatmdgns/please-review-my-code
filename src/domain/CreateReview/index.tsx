@@ -10,7 +10,6 @@ import { Editor } from './Editor';
 import { useAtom } from 'jotai';
 import { POST_SEND_ATOM } from 'store';
 
-
 const CreateReview = () => {
   const user = useContext(AuthContext);
   const [, sendPost] = useAtom(POST_SEND_ATOM);
