@@ -1,7 +1,7 @@
 import { Tag } from './Tag';
 import { TitleInput } from './TitleInput';
 import { Editor as ToastUI } from './Editor';
-import { TagInput } from './TagInput';
+// import { TagInput } from './TagInput';
 import Editor, { DiffEditor, useMonaco, loader } from '@monaco-editor/react';
 import { Layout } from 'components/common/Layout';
 
