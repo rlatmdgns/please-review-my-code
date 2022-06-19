@@ -41,8 +41,8 @@ const Detail = ({ title, content, tag, category, date, comment }: Post) => {
       setPostData({
         author: data.author,
         category: data.category,
-        code: data.code,
-        content: data.content,
+        code: 'function test(){\n    console.log(1)\n}\n',
+        content: '<p>jjljkljljkljljkljkljlkjkljㅌㅋㅌㅇㅁㄴㅇㅁ</p>',
         date: '2020-05-12',
         tag: [data.tag],
         title: data.title,
