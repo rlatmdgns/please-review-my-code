@@ -13,7 +13,7 @@ export const Sidebar = () => {
           <Link to="/createReview">질문 등록하기</Link>
         </Menu>
         <Menu>
-          <Link to="/detail">답변하기</Link>
+          <Link to="/detail:id">답변하기</Link>
         </Menu>
         <Menu>
           <Link to="/sample">명예의 전당</Link>
