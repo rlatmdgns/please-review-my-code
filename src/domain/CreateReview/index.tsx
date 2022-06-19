@@ -7,7 +7,7 @@ import { OnChangeType } from './Editor/Editor';
 
 const CreateReview = () => {
   function handleEditorChanged(editorContent: OnChangeType) {
-    console.log(editorContent);
+    console.log(1, editorContent);
   }
 
   return (
