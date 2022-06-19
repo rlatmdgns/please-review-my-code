@@ -22,7 +22,7 @@ export type PostType = {
   code: string;
   editDate: Date;
   author: string;
-  tag: string;
+  tags: string[];
   category: string;
 } & IdType;
 
@@ -38,6 +38,7 @@ export type UserType = {
   id: string;
   displayName: string;
   email: string;
+  photoURL: string;
 };
 
 const TYPE_USERS = 'users';
@@ -48,13 +49,13 @@ const TYPE_COMMENTS = 'comments';
 
 export class FbService {
   public async createUser(user: User) {
-    const { uid, displayName, email } = user;
-    const q = await query(collection(db, TYPE_USERS), where('uid', '==', user?.uid));
+    const { uid, displayName, email, photoURL } = user;
+    const q = await query(collection(db, TYPE_USERS), where('id', '==', user?.uid));
 
     const querySnapshot = await getDocs(q);
 
     if (querySnapshot.size === 0) {
-      await addDoc(collection(db, TYPE_USERS), { id: uid, displayName, email } as UserType);
+      await addDoc(collection(db, TYPE_USERS), { id: uid, displayName, email, photoURL } as UserType);
     }
   }
 
