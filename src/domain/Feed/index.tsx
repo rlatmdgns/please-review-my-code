@@ -54,7 +54,7 @@ const Feed = () => {
 
   const handleClickCategory = (idx: number, category: string) => {
     setCategoryActiveIdx(idx);
-    setCardFilter({ ...cardFilter, category: category });
+    setCardFilter({ skill: undefined, category: category });
   };
 
   // 혹시
