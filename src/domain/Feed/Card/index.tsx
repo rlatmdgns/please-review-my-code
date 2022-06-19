@@ -3,23 +3,31 @@ import * as Style from './styles';
 import { Labels, Wrapper, BottomContainer, Category, Title, Label, Date } from './styles';
 import { useContext } from 'react';
 import { AuthContext } from '../../../utils/firebase';
+import { ICard } from 'utils/types/post';
 
-export const Card = () => {
-  const user = useContext(AuthContext);
+interface CardProps {
+  tag: string;
+}
+
+export const Card = (props: { card: ICard }) => {
+  const { title, tag, date, category, user } = props.card;
+  // const user = useContext(AuthContext);
 
   return (
+    // <Style.Wrapper to="/detail/">
     <Style.Wrapper>
-      <Category>디버깅</Category>
-      <Title>이거 맞나요? 왜 안되죠? 살려주세요</Title>
+      <Category>{category}</Category>
+      <Title>{title}</Title>
       <Labels>
-        <Label>#React</Label>
-        <Label>#JS</Label>
+        {tag.map((t) => (
+          <Label>#{t}</Label>
+        ))}
       </Labels>
-      <Date>2022.06.18</Date>
+      <Date>{date}</Date>
       <Divider />
       <Style.BottomContainer>
         <FlexBox>
-          <Style.Writer>아이디</Style.Writer>
+          <Style.Writer>{user}</Style.Writer>
         </FlexBox>
         <FlexCenter>
           <Style.Like>💙</Style.Like>

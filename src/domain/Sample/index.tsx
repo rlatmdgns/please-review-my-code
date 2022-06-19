@@ -14,7 +14,7 @@ const Sample = () => {
   };
 
   const login = () => {
-    signInWithPopup(auth, githubProvider).then(res => {
+    signInWithPopup(auth, githubProvider).then((res) => {
       console.log(res);
     });
   };
