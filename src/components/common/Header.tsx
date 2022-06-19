@@ -59,7 +59,7 @@ const LoggedIn = styled.div<{ active: boolean }>`
 
   > ul {
     position: absolute;
-    display: ${props => (props.active ? 'block' : 'none')};
+    display: ${(props) => (props.active ? 'block' : 'none')};
     min-width: 200px;
     z-index: 20;
     background: #fff;

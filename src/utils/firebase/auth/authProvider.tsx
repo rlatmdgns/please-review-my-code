@@ -11,7 +11,7 @@ const AuthProvider = (props: Props) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    return auth.onAuthStateChanged(authUser => {
+    return auth.onAuthStateChanged((authUser) => {
       console.log(`authUser`, authUser);
       setUser(authUser);
     });
