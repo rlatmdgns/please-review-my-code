@@ -35,11 +35,10 @@ export type CommentType = {
 } & IdType;
 
 export type UserType = {
-  id: string;
   displayName: string;
   email: string;
   photoURL: string;
-};
+} & IdType;
 
 const TYPE_USERS = 'users';
 const TYPE_POSTS = 'posts';
@@ -60,11 +59,35 @@ export class FbService {
   }
 
   public async createPost(post: PostType) {
-    await this.create<PostType>(TYPE_POSTS, post);
+    if (!post.author) {
+      throw new Error('author가 없습니다');
+    }
+
+    if (!post.content) {
+      throw new Error('content가 없습니다');
+    }
+
+    if (!post.code) {
+      throw new Error('code가 없습니다');
+    }
+
+    return this.create<PostType>(TYPE_POSTS, post);
   }
 
   public async createComment(comment: CommentType) {
-    await this.create<CommentType>(TYPE_COMMENTS, comment);
+    if (!comment.postId) {
+      throw new Error('postId가 없습니다');
+    }
+
+    if (!comment.author) {
+      throw new Error('author가 없습니다');
+    }
+
+    if (!comment.content) {
+      throw new Error('내용을 입력하세요');
+    }
+
+    return this.create<CommentType>(TYPE_COMMENTS, comment);
   }
 
   public async getPosts() {
