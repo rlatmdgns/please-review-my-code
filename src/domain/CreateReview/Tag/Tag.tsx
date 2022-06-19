@@ -10,6 +10,7 @@ const Tag = () => {
   const TAG_EVENT_KEY = 'Enter';
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    if (!tag) return;
     if (tags.length > TAG_MAX_LENGTH) return setTag('');
     if (event.key === TAG_EVENT_KEY) {
       setTags([...tags, tag]);
