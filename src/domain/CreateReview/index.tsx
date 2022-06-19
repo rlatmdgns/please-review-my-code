@@ -1,7 +1,14 @@
 import React from 'react';
+import { TagInput } from './TagInput';
+import { TitleInput } from './TitleInput';
 
 const CreateReview = () => {
-  return <div>CreateReview 페이지</div>;
+  return (
+    <div>
+      <TitleInput />
+      <TagInput />
+    </div>
+  );
 };
 
 export default CreateReview;
