@@ -4,7 +4,9 @@ import styled from 'styled-components';
 export const Sidebar = () => {
   return (
     <Wrapper>
-      <Title>PLEVIEW</Title>
+      <Title>
+        <NavLink to="/">PLEVIEW</NavLink>
+      </Title>
       <Menus>
         <Menu>
           <Link to="/">Home</Link>
@@ -27,8 +29,12 @@ const Title = styled.h1`
   text-align: center;
   font-size: 2rem;
   font-weight: 700;
-  color: #fff;
   margin-bottom: 50px;
+
+  a {
+    color: #fff;
+    display: block;
+  }
 `;
 
 const Wrapper = styled.nav`

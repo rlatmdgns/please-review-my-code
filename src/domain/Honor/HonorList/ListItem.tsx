@@ -1,5 +1,6 @@
 import { HonorType } from '../index';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 type Prop = {
   item: HonorType;
@@ -8,36 +9,56 @@ type Prop = {
 export const ListItem = ({ item }: Prop) => {
   return (
     <Container>
-      <ProfileImage src={item.image} title="프로필 이미지" />
-      <ProfileName>dhrod0325@naver.com</ProfileName>
-      <ProfileMeta>리뷰 수 : 125</ProfileMeta>
-      <ProfileMeta>답변 수 : 125</ProfileMeta>
+      <NavLink to={`/honor/${item.id}`}>
+        <ProfileImage img={item.image} title="프로필 이미지" />
+        <MetaContainer>
+          <ProfileName>{item.name}</ProfileName>
+          <ProfileMeta>리뷰 수 : {item.reviewCount}</ProfileMeta>
+          <ProfileMeta>답변 수 : {item.answerCount}</ProfileMeta>
+        </MetaContainer>
+      </NavLink>
     </Container>
   );
 };
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  background: #fff;
-  padding: 20px;
-  border: 1px solid #dedede;
+  > a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid #dedede;
+    min-width: 260px;
+
+    &:hover div {
+      background-size: 150%;
+    }
+  }
 `;
 
-const ProfileImage = styled.img`
-  width: 150px;
+const MetaContainer = styled.div`
+  padding: 20px;
+  text-align: center;
+`;
+
+const ProfileImage = styled.div<{ img: string }>`
+  width: 100%;
   height: 150px;
-  border-radius: 50%;
   display: block;
+  background-image: url(${(props) => props.img});
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s;
 `;
 
 const ProfileName = styled.p`
   font-weight: bold;
-  margin: 20px 0;
+  margin-bottom: 20px;
 `;
 
 const ProfileMeta = styled.p`
   font-size: 1rem;
+  line-height: 150%;
 `;
