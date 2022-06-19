@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "pleview-898b3.web.app",
     "public": "build",
     "ignore": [
       "firebase.json",

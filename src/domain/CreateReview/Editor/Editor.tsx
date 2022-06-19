@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useSetAtom } from 'jotai';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 import { Editor as ToastEditor } from '@toast-ui/react-editor';
@@ -7,25 +8,29 @@ import MonacoEditor from '@monaco-editor/react';
 import styled from 'styled-components';
 import ToastuiEditor from '@toast-ui/editor';
 
-type OnSaveType = {
+import { CONTENT_ATOM, CODE_ATOM } from 'store';
+
+export type OnChangeType = {
   contentHtml: string;
   contentMarkdown: string;
   code: string;
 };
 
 type Props = {
-  onSave?: (editor: OnSaveType) => void;
+  onChange?: (editor: OnChangeType) => void;
 };
 
 type MonacoEditorType = {
   getValue: () => string;
 };
 
-const Editor = (props: Props) => {
+const Editor = ({ onChange }: Props) => {
   const toastUiRef: any = useRef(null);
   const [monacoEditor, setMonacoEditor] = useState({} as MonacoEditorType);
+  const setContent = useSetAtom(CONTENT_ATOM);
+  const setCode = useSetAtom(CODE_ATOM);
 
-  function handleOnSave() {
+  function handleChanged() {
     const editor = toastUiRef.current.getInstance() as ToastuiEditor;
 
     const contentHtml = editor.getHTML();
@@ -38,9 +43,10 @@ const Editor = (props: Props) => {
       code,
     };
 
-    console.log(args);
+    setContent(contentHtml);
+    setCode(code);
 
-    props.onSave?.(args);
+    onChange?.(args);
   }
 
   function handleMonacoMount(editor: MonacoEditorType) {
@@ -60,6 +66,7 @@ const Editor = (props: Props) => {
             initialEditType="markdown"
             useCommandShortcut={true}
             ref={toastUiRef}
+            onChange={handleChanged}
           />
         </EditorWrapper>
       </InputGroup>
@@ -71,10 +78,9 @@ const Editor = (props: Props) => {
           height="20vh"
           defaultLanguage="javascript"
           defaultValue="// some comment"
+          onChange={handleChanged}
         />
       </InputGroup>
-
-      <button onClick={handleOnSave}>test</button>
     </Wrapper>
   );
 };

@@ -5,50 +5,34 @@ import CodeBlock from './CodeBlock';
 import CodeComment from './CodeComment';
 import Comment from './Comment';
 import * as Style from './style';
-import { useEffect, useState, useLayoutEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-import { db } from 'utils/firebase/db/db';
-import { addDoc, collection, getDocs, query } from 'firebase/firestore';
+function getPostData(id: number): Promise<Post> {
+  const dummyData: Post[] = [
+    {
+      title: '타이틀타이틀',
+      content: '<p>jjljkljljkljljkljkljlkjkljㅌㅋㅌㅇㅁㄴㅇㅁ</p>',
+      code: 'function test(){\n    console.log(1)\n}\n',
+      tag: ['tag1', 'tag2'],
+      category: '디버깅',
+      date: '2020-03-14',
+    },
 
-async function myTest() {
-  try {
-    const result: any[] = [];
-    const q = await query(collection(db, 'posts'));
-    const posts = await getDocs(q);
-    posts.forEach((doc) => result.push({ id: 0, ...doc.data() }));
-    return result[0];
-  } catch (e) {
-    console.error('Error adding document: ', e);
-  }
+    {
+      title: '타이틀타이틀2',
+      content: '<p>jjljkljljkljljkljkljlkjkljㅌㅋㅌㅇㅁㄴㅇㅁ</p>',
+      code: 'function test(){\n    console.log(1)\n}\n',
+      tag: ['tag1', 'tag2'],
+      category: '디버깅',
+      date: '2020-03-14',
+    },
+  ];
+
+  return new Promise((resolve) => resolve(dummyData[id]));
 }
 
 const Detail = ({ title, content, tag, category, date, comment }: Post) => {
   const { id } = useParams();
-  const [postData, setPostData] = useState<any>({
-    author: '1',
-    category: '1',
-    code: '1',
-    content: '1',
-    date: '1',
-    tag: ['1'],
-    title: '1',
-  });
-
-  useEffect(() => {
-    (async () => {
-      const data = await myTest();
-      console.log(data);
-      setPostData({
-        author: data.author,
-        category: data.category,
-        code: 'function test(){\n    console.log(1)\n}\n',
-        content: '<p>jjljkljljkljljkljkljlkjkljㅌㅋㅌㅇㅁㄴㅇㅁ</p>',
-        date: '2020-05-12',
-        tag: [data.tag],
-        title: data.title,
-      });
-    })();
-  }, []);
 
   return (
     <Style.Wrapper>
@@ -60,21 +44,21 @@ const Detail = ({ title, content, tag, category, date, comment }: Post) => {
         <FlexColumnCenter>
           <Style.Name>{postData.author}</Style.Name>
           <Box height="8px"></Box>
-          <Style.Created>{postData.date}</Style.Created>
+          <Style.Created>{date}</Style.Created>
         </FlexColumnCenter>
       </FlexBox>
       <Box height="20px"></Box>
-      <Style.Title>{postData.title}</Style.Title>
+      <Style.Title>{title}</Style.Title>
       <Box height="20px"></Box>
       <FlexBox gap={10}>
-        {postData.tag.map((t: string, idx: number) => (
-          <Style.Label key={idx}>{t}</Style.Label>
+        {tag?.map((t) => (
+          <Style.Label>{t}</Style.Label>
         ))}
       </FlexBox>
       <Box height="10px"></Box>
       <Divider />
       <Box height="10px"></Box>
-      <Style.Content>{postData.content}</Style.Content>
+      <Style.Content>{content}</Style.Content>
       <Box height="20px"></Box>
       <Style.CodeBlockContainer>
         <CodeBlock></CodeBlock>
