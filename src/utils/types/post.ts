@@ -20,10 +20,18 @@ interface Comment {
   name: string;
 }
 
-interface IFilter {
+export interface IFilter {
   category?: string;
-  tag?: string[];
+  skill?: string;
 }
+
+// export interface ICategory {
+//   category?: string;
+// }
+
+// export interface ITag {
+//   tag?: string[];
+// }
 
 /**
  *  유저정보 받아오는 코드

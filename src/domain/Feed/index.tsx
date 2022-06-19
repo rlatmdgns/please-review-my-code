@@ -5,7 +5,7 @@ import { Card } from './Card';
 import { Layout } from '../../components/common/Layout';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { ICard } from 'utils/types/post';
+import { ICard, IFilter } from 'utils/types/post';
 
 const categoryArray = ['디버깅', '클린코드', '아키텍처'];
 const skillArray = ['React', 'Javascript', 'Typescript'];
@@ -20,6 +20,16 @@ const skillArray = ['React', 'Javascript', 'Typescript'];
 
 1. 데이터를 가져오고
 2. 소팅한다.
+*/
+
+/*
+  data로 cardData를 가지고 있고여
+  filter 기능이 필요해요 (filter는  skil, category)
+
+
+  1) skill 또는 category handler에 filter state 변경
+  2) 리렌더링
+  3) 필터링된 cardData를 렌더링
 
 */
 
@@ -29,7 +39,7 @@ function getCardData(): Promise<ICard[]> {
     {
       category: '디버깅',
       title: '제목제목',
-      tag: ['JS', 'React'],
+      tag: ['Javascript', 'React'],
       date: '2022-03-13',
       user: '아이',
     },
@@ -48,6 +58,13 @@ function getCardData(): Promise<ICard[]> {
 const Feed = () => {
   const [categoryActiveIdx, setCategoryActiveIdx] = useState(0);
   const [cardData, setCardData] = useState<ICard[]>([]);
+  const [cardFilter, setCardFilter] = useState<IFilter>({
+    skill: undefined,
+    category: undefined,
+  });
+
+  // const [categoryFilter, setCategoryFilter] = useState<ICategory>();
+  // const [tagFilter, setTagFilter] = useState<ICard[]>();
 
   useEffect(() => {
     (async () => {
@@ -58,8 +75,9 @@ const Feed = () => {
     })();
   }, []);
 
-  const handleClickCategory = (idx: number) => {
+  const handleClickCategory = (idx: number, category: string) => {
     setCategoryActiveIdx(idx);
+    setCardFilter({ ...cardFilter, category: category });
   };
 
   // 혹시
@@ -67,7 +85,16 @@ const Feed = () => {
   const skillAll = ['React', 'Javascript', 'Typescript'];
 
   const handleFilter = (skill: string) => {
-    skillAll.indexOf(skill);
+    setCardFilter({ ...cardFilter, skill: skill });
+  };
+
+  // 여기서 처리할려고해요 렌더링 될 때
+  const renderCardData = () => {
+    const filteredData = cardData.filter((data) => {
+      if (!cardFilter.skill) return true;
+      return data.tag.includes(cardFilter.skill);
+    });
+    return filteredData.map((card: ICard, idx) => <Card key={idx} card={card} />);
   };
 
   return (
@@ -77,7 +104,7 @@ const Feed = () => {
           {categoryArray.map((category, idx) => (
             <Category
               key={`${idx}_${category}`}
-              onClick={() => handleClickCategory(idx)}
+              onClick={() => handleClickCategory(idx, category)}
               active={categoryActiveIdx === idx}
             >
               {category}
@@ -93,9 +120,15 @@ const Feed = () => {
         </Skills>
       </FlexColumn>
       <CardContainer>
-        {cardData.map((card: ICard, idx) => (
-          <Card key={idx} card={card} />
-        ))}
+        {renderCardData()}
+        {/* {tagFilter?.map((card) => (
+          <Card card={card} />
+        ))} */}
+        {/* <Card card={cardfilter} /> */}
+        {/* {cardFilter
+          ? cardFilter.map((card: ICard, idx) => <Card key={idx} card={card} /> 
+          : cardData.map((card: ICard, idx) => <Card key={idx} card={card} />)
+        } */}
       </CardContainer>
     </Layout>
   );
