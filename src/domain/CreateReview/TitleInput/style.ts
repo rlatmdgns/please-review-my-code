@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   margin: 10px 20px;
-  border-bottom:4px solid #6667ab;
+  border-bottom: 4px solid #6667ab;
 `;
 export const Input = styled.input`
   position: relative;

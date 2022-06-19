@@ -1,15 +1,15 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import CreateReview from './domain/CreateReview';
+import CreateReview from 'domain/CreateReview';
+import { Routes, Route } from 'react-router-dom';
+import Feed from './domain/Feed';
+import Detail from './domain/Detail';
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/create" element={<CreateReview />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <Routes>
+      <Route path="/" element={<Feed />}></Route>
+      <Route path="/createReview" element={<CreateReview />}></Route>
+      <Route path="/detail" element={<Detail />}></Route>
+    </Routes>
   );
 }
 
