@@ -29,5 +29,5 @@ const FlexBox = styled.div`
 const FlexItem = styled.div`
   flex-grow: 1;
   padding: 20px;
-  background: #F8F9FA;
+  background: #f8f9fa;
 `;
