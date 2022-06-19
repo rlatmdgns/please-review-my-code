@@ -10,29 +10,6 @@ import { ICard, IFilter } from 'utils/types/post';
 const categoryArray = ['디버깅', '클린코드', '아키텍처'];
 const skillArray = ['React', 'Javascript', 'Typescript'];
 
-/*
- 1. (완성) Feed component에서 데이터를 백엔드에 요청 (이 데이터는 카드에 보여쥴 데이터만 가져옴, + id)
- 2. (완성) Feed component에서 카드를 렌더링
- 3. Feed component에서 카드 component로 props 전달 (보여줘야되는 컨텐츠 + id);
- 4. ICard에 id 추가
- 
-데이터를 다 가져옴 => 서버에 요청 더이상 필요 X
-
-1. 데이터를 가져오고
-2. 소팅한다.
-*/
-
-/*
-  data로 cardData를 가지고 있고여
-  filter 기능이 필요해요 (filter는  skil, category)
-
-
-  1) skill 또는 category handler에 filter state 변경
-  2) 리렌더링
-  3) 필터링된 cardData를 렌더링
-
-*/
-
 // TODO: erase
 function getCardData(): Promise<ICard[]> {
   const dummyData: ICard[] = [
@@ -90,10 +67,15 @@ const Feed = () => {
 
   // 여기서 처리할려고해요 렌더링 될 때
   const renderCardData = () => {
-    const filteredData = cardData.filter((data) => {
-      if (!cardFilter.skill) return true;
-      return data.tag.includes(cardFilter.skill);
-    });
+    const filteredData = cardData
+      .filter((data) => {
+        if (!cardFilter.skill) return true;
+        return data.tag.includes(cardFilter.skill);
+      })
+      .filter((data) => {
+        if (!cardFilter.category) return true;
+        return data.category === cardFilter.category;
+      });
     return filteredData.map((card: ICard, idx) => <Card key={idx} card={card} />);
   };
 
@@ -119,17 +101,7 @@ const Feed = () => {
           ))}
         </Skills>
       </FlexColumn>
-      <CardContainer>
-        {renderCardData()}
-        {/* {tagFilter?.map((card) => (
-          <Card card={card} />
-        ))} */}
-        {/* <Card card={cardfilter} /> */}
-        {/* {cardFilter
-          ? cardFilter.map((card: ICard, idx) => <Card key={idx} card={card} /> 
-          : cardData.map((card: ICard, idx) => <Card key={idx} card={card} />)
-        } */}
-      </CardContainer>
+      <CardContainer>{renderCardData()}</CardContainer>
     </Layout>
   );
 };
