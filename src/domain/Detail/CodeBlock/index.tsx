@@ -1,31 +1,71 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useContext, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Box, FlexBox, FlexCenter } from 'styles/theme';
+import { AuthContext } from 'utils/firebase';
+import { fbService } from 'utils/firebase/db/db';
 
 interface Code {
+  postId: string | undefined;
   children: string;
 }
 
+// inferface IComment {
+//   name: string | null | undefined,
+
+// }
+
 const CodeBlock = (props: Code) => {
-  const { children } = props;
-  console.log(children);
-  const [index, setIndex] = useState<number>();
+  const { postId, children } = props;
+  const [index, setIndex] = useState<number>(1);
   const [clickedLine, setClickedLine] = useState(false);
   // const [renderTextArea, setRenderTextArea] = useState(false);
+  const [comment, setComment] = useState({
+    name: '',
+    content: '',
+  });
+  const [value, setValue] = useState('');
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleLineClick = (idx: number) => {
     setIndex(idx);
     setClickedLine(true);
   };
 
+  const user = useContext(AuthContext);
+
+  /**
+   * interface Comment {
+      id?: string;
+      name: string;
+      content: string;
+    }
+   */
+
   const handleReviewSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    console.log(textareaRef.current?.defaultValue);
+
+    setComment({
+      name: (user && user.displayName) || '',
+      content: `${textareaRef.current?.defaultValue}`,
+    });
+
+    fbService.createComment({
+      author: comment.name,
+      content: comment.content,
+      postId: postId || '',
+      parentId: '',
+      regDate: new Date(),
+    });
+
+    setClickedLine(false);
   };
 
   return (
     <div>
       {children.split('\n').map((code, idx) => {
-        if (!code) return;
+        // if (!code) return;
         return (
           <>
             <CodeLine onClick={() => handleLineClick(idx)}>
@@ -36,8 +76,8 @@ const CodeBlock = (props: Code) => {
             </CodeLine>
             {index === idx && clickedLine && (
               <ReviewForm onSubmit={(e: FormEvent<HTMLFormElement>) => handleReviewSubmit(e)}>
-                <ReviewTextArea placeholder="리뷰를 입력하세요.." cols={40} />
-                <ConfirmBtn>리뷰등록</ConfirmBtn>
+                <ReviewTextArea placeholder="리뷰를 입력하세요.." cols={40} ref={textareaRef} />
+                <ConfirmBtn type="submit">리뷰등록</ConfirmBtn>
               </ReviewForm>
             )}
           </>

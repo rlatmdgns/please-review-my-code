@@ -91,7 +91,7 @@ const Detail = ({ title, content, tag, category, date, comment }: Post) => {
       <Box height="20px"></Box>
 
       <Style.CodeBlockContainer>
-        <CodeBlock>{postData.code}</CodeBlock>
+        <CodeBlock postId={id}>{postData.code}</CodeBlock>
         <Box width="20px"></Box>
 
         {/* <Style.CodeComments>

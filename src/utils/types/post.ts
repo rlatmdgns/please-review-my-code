@@ -18,8 +18,9 @@ export interface ICard {
 }
 
 interface Comment {
-  id: string;
-  name: string;
+  id?: string;
+  name: string | null;
+  content: string;
 }
 
 export interface IFilter {
