@@ -13,13 +13,17 @@ export const Box = styled.div<{ width?: string; height?: string }>`
   ${(props) => props.height && `height: ${props.height}`};
 `;
 
-export const FlexBox = styled.div`
+export const FlexBox = styled.div<{ gap?: number }>`
   display: flex;
+
+  > :not(:last-child) {
+    margin-right: ${(props) => props.gap}px;
+  }
 `;
 
-export const FlexBoxRight = styled(FlexBox)`
-  align-items: center;
-`;
+FlexBox.defaultProps = {
+  gap: 0,
+};
 
 export const FlexCenter = styled(FlexBox)`
   justify-content: center;
@@ -28,6 +32,10 @@ export const FlexCenter = styled(FlexBox)`
 
 export const FlexColumn = styled(FlexBox)`
   flex-direction: column;
+`;
+
+export const FlexColumnCenter = styled(FlexColumn)`
+  justify-content: center;
 `;
 
 export const Divider = styled.hr`
