@@ -4,6 +4,7 @@ import { useSetAtom } from 'jotai';
 import { auth } from './auth';
 import { AuthContext } from './authContext';
 import { NAME_ATOM, IMAGE_ATOM, EMAIL_ATOM } from 'store';
+import { fbService } from '../db/db';
 
 type Props = {
   children: ReactNode;
@@ -22,7 +23,10 @@ const AuthProvider = (props: Props) => {
   const setUserEmail = useSetAtom(EMAIL_ATOM);
 
   useEffect(() => {
-    return auth.onAuthStateChanged((authUser) => {
+    return auth.onAuthStateChanged(async (authUser) => {
+      if (authUser) {
+        await fbService.createUser(authUser);
+      }
       console.log(`authUser`, authUser);
       const AUTH_USER = authUser as IUser;
 
