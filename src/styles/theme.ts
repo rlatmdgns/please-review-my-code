@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const theme = {
   color: {
-    primary: '#6667ab',
+    primary: '#e7e7e7',
     white: '#ffffff',
+    black: '#333333',
   },
 };
 
@@ -32,5 +33,5 @@ export const FlexColumn = styled(FlexBox)`
 export const Divider = styled.hr`
   width: 100%;
   border-top: 1px solid #8e8e8e;
-  margin: 0px;
+  margin: 0;
 `;
