@@ -5,7 +5,7 @@ import { User } from 'firebase/auth';
 export const db = getFirestore(firebaseApp);
 
 export type IdType = {
-  id: string;
+  id?: string;
 };
 
 export type TagType = {
@@ -26,10 +26,25 @@ export type PostType = {
   category: string;
 } & IdType;
 
+export type CommentType = {
+  author: string;
+  content: string;
+  postId: string;
+  parentId: string;
+  regDate: Date;
+} & IdType;
+
+export type UserType = {
+  id: string;
+  displayName: string;
+  email: string;
+};
+
 const TYPE_USERS = 'users';
 const TYPE_POSTS = 'posts';
 const TYPE_CATEGORIES = 'categories';
 const TYPE_TAGS = 'tags';
+const TYPE_COMMENTS = 'comments';
 
 export class FbService {
   public async createUser(user: User) {
@@ -39,20 +54,39 @@ export class FbService {
     const querySnapshot = await getDocs(q);
 
     if (querySnapshot.size === 0) {
-      await addDoc(collection(db, TYPE_USERS), { uid, displayName, email });
+      await addDoc(collection(db, TYPE_USERS), { id: uid, displayName, email } as UserType);
     }
   }
 
   public async createPost(post: PostType) {
-    try {
-      return await addDoc(collection(db, TYPE_POSTS), post);
-    } catch (e) {
-      console.error('Error adding document: ', e);
-    }
+    await this.create<PostType>(TYPE_POSTS, post);
+  }
+
+  public async createComment(comment: CommentType) {
+    await this.create<CommentType>(TYPE_COMMENTS, comment);
   }
 
   public async getPosts() {
-    return this.getList<PostType>(TYPE_POSTS);
+    const results = await this.getList<PostType>(TYPE_POSTS);
+
+    results.forEach((item) => {
+      console.log(item);
+    });
+
+    return results;
+  }
+
+  public async getCommentsByPostId(postId: string) {
+    const result: CommentType[] = [];
+    const q = await query(collection(db, TYPE_COMMENTS), where('postId', '==', postId));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((result1) => {
+      const data = result1.data();
+      result.push({ id: result1.id, ...data } as CommentType);
+    });
+
+    return result;
   }
 
   public async getPostById(postId: string) {
@@ -76,7 +110,7 @@ export class FbService {
     return result;
   }
 
-  public async getById(collectionName: string, id: string) {
+  private async getById(collectionName: string, id: string) {
     const docRef = doc(db, collectionName, id);
     const docSnap = await getDoc(docRef);
 
@@ -87,17 +121,20 @@ export class FbService {
     return docSnap.data();
   }
 
+  private async create<T>(collectionName: string, item: T) {
+    try {
+      return await addDoc(collection(db, collectionName), item);
+    } catch (e) {
+      console.error('Error adding document: ', e);
+    }
+  }
+
   async sample() {
     const postList = await this.getPosts();
     console.log(postList);
 
-    if (postList) {
-      const res = await this.getPostById(postList[0].id);
-      console.log(res);
-    }
-
-    console.log(await this.getCategories());
-    console.log(await this.getTags());
+    const comments = await this.getCommentsByPostId('Twfs3nFkZichweeRtYJf');
+    console.log(comments, 'this is comment');
   }
 }
 
