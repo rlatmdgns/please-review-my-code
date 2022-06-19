@@ -10,8 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Feed />}></Route>
         <Route path="/createReview" element={<CreateReview />}></Route>
-        <Route path="/detail" element={<Detail />}></Route>
-        {/* <Route path="/detail/:id" element={<Detail />}></Route> */}
+        <Route path="/detail/:id" element={<Detail />}></Route>
       </Routes>
     </AuthProvider>
   );
