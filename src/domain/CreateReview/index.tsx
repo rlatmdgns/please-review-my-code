@@ -1,15 +1,14 @@
 import React from 'react';
-import { TagInput } from './TagInput';
+import { Tag } from './Tag';
 import { TitleInput } from './TitleInput';
-import { Layout } from '../../components/common/Layout';
 import { Editor } from './Editor';
-
+import { Layout } from '../../components/common/Layout';
 const CreateReview = () => {
   return (
     <Layout>
       <TitleInput />
+      <Tag />
       <Editor />
-      <TagInput />
     </Layout>
   );
 };
