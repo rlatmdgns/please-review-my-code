@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { ICard, IFilter } from 'utils/types/post';
 import { Link } from 'react-router-dom';
 
-const categoryArray = ['디버깅', '클린코드', '아키텍처'];
+const categoryArray = ['전체', '디버깅', '클린코드', '아키텍처'];
 const skillArray = ['React', 'Javascript', 'Typescript'];
 
 // TODO: erase
@@ -38,7 +38,7 @@ const Feed = () => {
   const [cardData, setCardData] = useState<ICard[]>([]);
   const [cardFilter, setCardFilter] = useState<IFilter>({
     skill: undefined,
-    category: undefined,
+    category: '전체',
   });
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const Feed = () => {
         return data.tag.includes(cardFilter.skill);
       })
       .filter((data) => {
-        if (!cardFilter.category) return true;
+        if (!cardFilter.category || cardFilter.category === '전체') return true;
         return data.category === cardFilter.category;
       });
     return filteredData.map((card: ICard, idx) => {

@@ -1,7 +1,6 @@
 import { Layout } from 'components/common/Layout';
 import { useContext } from 'react';
 import { AuthContext } from 'utils/firebase';
-
 import { TitleInput } from './TitleInput';
 import { Tag } from './Tag';
 import { Category } from './Category';
