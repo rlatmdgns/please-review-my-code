@@ -8,7 +8,7 @@ export const Card = () => {
   const user = useContext(AuthContext);
 
   return (
-    <Wrapper>
+    <Style.Wrapper>
       <Category>디버깅</Category>
       <Title>이거 맞나요? 왜 안되죠? 살려주세요</Title>
       <Labels>
@@ -17,7 +17,7 @@ export const Card = () => {
       </Labels>
       <Date>2022.06.18</Date>
       <Divider />
-      <BottomContainer>
+      <Style.BottomContainer>
         <FlexBox>
           <Style.Writer>아이디</Style.Writer>
         </FlexBox>
@@ -25,11 +25,8 @@ export const Card = () => {
           <Style.Like>💙</Style.Like>
           <Box width="10px" />
           <Style.Comments>💬</Style.Comments>
-        </FlexBoxRight>
         </FlexCenter>
       </Style.BottomContainer>
     </Style.Wrapper>
-      </BottomContainer>
-    </Wrapper>
   );
 };
