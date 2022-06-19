@@ -1,6 +1,5 @@
 import React from 'react';
 import { useAtom } from 'jotai';
-import useInput from '../../../utils/hooks/useInput';
 import * as Style from './style';
 import { TITLE_ATOM } from 'store';
 

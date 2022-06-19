@@ -6,8 +6,10 @@ import { TitleInput } from './TitleInput';
 import { Tag } from './Tag';
 import { Category } from './Category';
 import { Editor } from './Editor';
+
 import { useAtom } from 'jotai';
 import { POST_SEND_ATOM } from 'store';
+
 
 const CreateReview = () => {
   const user = useContext(AuthContext);
@@ -17,7 +19,6 @@ const CreateReview = () => {
     if (!user || Object.hasOwnProperty.call(user, 'uid') === false) return;
     sendPost(user.uid);
   }
-
   return (
     <Layout>
       <TitleInput />
