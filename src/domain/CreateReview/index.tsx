@@ -4,12 +4,12 @@ import { Editor } from './Editor';
 import { Layout } from '../../components/common/Layout';
 import { OnChangeType } from './Editor/Editor';
 import { Editor as ToastUI } from './Editor';
+import { useAtomValue } from 'jotai/utils';
 
 const CreateReview = () => {
   function handleEditorChanged(editorContent: OnChangeType) {
     console.log(1, editorContent);
   }
-
   return (
     <Layout>
       <TitleInput />
