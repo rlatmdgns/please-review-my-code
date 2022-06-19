@@ -2,7 +2,7 @@ import { User } from 'firebase/auth';
 import { ReactNode, useEffect, useState } from 'react';
 import { auth } from './auth';
 import { AuthContext } from './authContext';
-import { fbService } from '../db/db';
+import { fbService } from 'utils/firebase/db/db';
 
 type Props = {
   children: ReactNode;
