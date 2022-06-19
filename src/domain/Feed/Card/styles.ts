@@ -1,7 +1,11 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FlexBox, FlexColumn } from 'styles/theme';
 
-export const Wrapper = styled(FlexColumn)`
+// export const Wrapper = styled(Link)`
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 200px;
   border: 1px solid #dedede;
   padding: 20px;

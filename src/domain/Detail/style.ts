@@ -5,9 +5,6 @@ export const Wrapper = styled(FlexColumn)`
   max-width: 1080px;
   border: 1px solid black;
   padding: 50px;
-  * {
-    1px solid black;
-  }
 `;
 
 export const Profile = styled.div`

@@ -2,15 +2,81 @@ import styled from 'styled-components';
 import { FlexBox, FlexColumn } from 'styles/theme';
 import { Card } from './Card';
 import { Layout } from '../../components/common/Layout';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { ICard, IFilter } from 'utils/types/post';
+import { Link } from 'react-router-dom';
 
 const categoryArray = ['디버깅', '클린코드', '아키텍처'];
+const skillArray = ['React', 'Javascript', 'Typescript'];
+
+// TODO: erase
+function getCardData(): Promise<ICard[]> {
+  const dummyData: ICard[] = [
+    {
+      id: 0,
+      category: '디버깅',
+      title: '제목제목',
+      tag: ['Javascript', 'React'],
+      date: '2022-03-13',
+      user: '아이',
+    },
+    {
+      id: 1,
+      category: '클린코드',
+      title: '우아아',
+      tag: ['Typescript'],
+      date: '2022-07-19',
+      user: '아이디',
+    },
+  ];
+
+  return new Promise((resolve) => resolve(dummyData));
+}
 
 const Feed = () => {
   const [categoryActiveIdx, setCategoryActiveIdx] = useState(0);
+  const [cardData, setCardData] = useState<ICard[]>([]);
+  const [cardFilter, setCardFilter] = useState<IFilter>({
+    skill: undefined,
+    category: undefined,
+  });
 
-  const handleClickCategory = (idx: number) => {
+  useEffect(() => {
+    (async () => {
+      // TODO: erase
+      const fetchedCardData = await getCardData();
+      setCardData(fetchedCardData);
+    })();
+  }, []);
+
+  const handleClickCategory = (idx: number, category: string) => {
     setCategoryActiveIdx(idx);
+    setCardFilter({ skill: undefined, category: category });
+  };
+
+  const skillAll = ['React', 'Javascript', 'Typescript'];
+
+  const handleFilter = (skill: string) => {
+    setCardFilter({ ...cardFilter, skill: skill });
+  };
+
+  const renderCardData = () => {
+    const filteredData = cardData
+      .filter((data) => {
+        if (!cardFilter.skill) return true;
+        return data.tag.includes(cardFilter.skill);
+      })
+      .filter((data) => {
+        if (!cardFilter.category) return true;
+        return data.category === cardFilter.category;
+      });
+    return filteredData.map((card: ICard, idx) => {
+      return (
+        <Link key={idx} to={'/detail/' + card.id}>
+          <Card card={card} />
+        </Link>
+      );
+    });
   };
 
   return (
@@ -20,7 +86,7 @@ const Feed = () => {
           {categoryArray.map((category, idx) => (
             <Category
               key={`${idx}_${category}`}
-              onClick={() => handleClickCategory(idx)}
+              onClick={() => handleClickCategory(idx, category)}
               active={categoryActiveIdx === idx}
             >
               {category}
@@ -28,19 +94,14 @@ const Feed = () => {
           ))}
         </CategoryBox>
         <Skills>
-          <Skill>React</Skill>
-          <Skill>Typescript</Skill>
-          <Skill>Javascript</Skill>
+          {skillArray.map((skill, idx) => (
+            <Skill key={idx} onClick={() => handleFilter(skill)}>
+              {skill}
+            </Skill>
+          ))}
         </Skills>
       </FlexColumn>
-      <CardContainer>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </CardContainer>
+      <CardContainer>{renderCardData()}</CardContainer>
     </Layout>
   );
 };

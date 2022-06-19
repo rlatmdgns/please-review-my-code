@@ -57,4 +57,9 @@ export default createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+  
+  a {
+    color: #000;
+    text-decoration: none;
+  }
 `;
