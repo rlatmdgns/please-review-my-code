@@ -16,7 +16,7 @@ export const Sidebar = () => {
           <Link to="/detail">답변하기</Link>
         </Menu>
         <Menu>
-          <Link to="/sample">명예의 전당</Link>
+          <Link to="/honor">명예의 전당</Link>
         </Menu>
       </Menus>
     </Wrapper>
@@ -32,8 +32,8 @@ const Title = styled.h1`
 `;
 
 const Wrapper = styled.nav`
-  width: 260px;
-  height: 100vh;
+  min-width: 260px;
+  min-height: 100vh;
   background-color: #313a46;
   padding: 20px;
 `;
@@ -42,6 +42,10 @@ const Menus = styled.ul``;
 
 const Menu = styled.li`
   margin-bottom: 2rem;
+
+  .active {
+    color: #fff;
+  }
 `;
 
 const Link = styled(NavLink)`
