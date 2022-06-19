@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import useInput from '../../../utils/hooks/useInput';
 import * as Style from './style';
-import { TagItem } from './style';
 
 const Tag = () => {
   const [tag, handleTagChange, setTag] = useInput('');
