@@ -1,6 +1,6 @@
 import { FlexBox, FlexCenter, Divider, Box } from 'styles/theme';
 import * as Style from './styles';
-import { Labels, Wrapper, BottomContainer, Category, Title, Label, Date } from './styles';
+import { Labels, Category, Title, Label, Date } from './styles';
 import { useContext } from 'react';
 import { AuthContext } from '../../../utils/firebase';
 
