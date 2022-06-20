@@ -21,7 +21,7 @@ const CodeBlock = (props: Code) => {
 
   const handleLineClick = (idx: number) => {
     setIndex(idx);
-    setClickedLine(true);
+    setClickedLine(!clickedLine);
   };
 
   const user = useContext(AuthContext);
@@ -64,7 +64,7 @@ const CodeBlock = (props: Code) => {
                 <ReviewTextArea
                   placeholder="리뷰를 입력하세요.."
                   autoFocus
-                  rows={8}
+                  rows={6}
                   cols={50}
                   required
                   ref={textareaRef}
@@ -103,9 +103,7 @@ const CodeLine = styled.div`
   }
 `;
 
-const CodeContent = styled(FlexBox)`
-  height: 24px;
-`;
+const CodeContent = styled(FlexBox)``;
 
 const CodeArea = styled.div`
   font-size: 24px;

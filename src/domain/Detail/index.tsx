@@ -30,7 +30,7 @@ const Detail = () => {
         author: data.authorInfo.displayName,
         category: data.category,
         code: data.code,
-        content: data.content,
+        content: data.markdown,
         date: data.date,
         tag: data.tag,
         title: data.title,
