@@ -24,6 +24,7 @@ export type PostType = {
   author: string;
   tags: string[];
   category: string;
+  authorInfo?: UserType;
 } & IdType;
 
 export type CommentType = {
@@ -91,8 +92,13 @@ export class FbService {
   }
 
   public async getPosts() {
-    const results = await this.getList<PostType>(TYPE_POSTS);
-    return results;
+    const result = await this.getList<PostType>(TYPE_POSTS);
+
+    for (const post of result) {
+      post.authorInfo = await this.getUserById(post.author);
+    }
+
+    return this.getList<PostType>(TYPE_POSTS);
   }
 
   public async getCommentsByPostId(postId: string) {
@@ -108,8 +114,28 @@ export class FbService {
     return result;
   }
 
+  public async getUserById(userId: string) {
+    const q = await query(collection(db, TYPE_USERS), where('id', '==', userId));
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.size === 0) {
+      return;
+    }
+
+    const result: UserType[] = [];
+
+    querySnapshot.forEach((item) => {
+      result.push(item.data() as UserType);
+    });
+
+    return result[0];
+  }
+
   public async getPostById(postId: string) {
-    return this.getById(TYPE_POSTS, postId);
+    const post = await this.getById(TYPE_POSTS, postId);
+    post.authorInfo = await this.getUserById(post.author);
+
+    return post;
   }
 
   public async getCategories() {

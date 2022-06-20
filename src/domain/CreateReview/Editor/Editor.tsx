@@ -8,7 +8,7 @@ import MonacoEditor from '@monaco-editor/react';
 import styled from 'styled-components';
 import ToastuiEditor from '@toast-ui/editor';
 
-import { CONTENT_ATOM, CODE_ATOM } from 'store';
+import { CONTENT_ATOM, CODE_ATOM, MARKDOWN_ATOM } from 'store';
 
 type MonacoEditorType = {
   getValue: () => string;
@@ -19,6 +19,7 @@ const Editor = () => {
   const [monacoEditor, setMonacoEditor] = useState({} as MonacoEditorType);
   const setContent = useSetAtom(CONTENT_ATOM);
   const setCode = useSetAtom(CODE_ATOM);
+  const setMarkdown = useSetAtom(MARKDOWN_ATOM);
 
   function handleChanged() {
     const editor = toastUiRef.current.getInstance() as ToastuiEditor;
@@ -27,14 +28,9 @@ const Editor = () => {
     const contentMarkdown = editor.getMarkdown();
     const code = monacoEditor?.getValue();
 
-    const args = {
-      contentHtml,
-      contentMarkdown,
-      code,
-    };
-
     setContent(contentHtml);
     setCode(code);
+    setMarkdown(contentMarkdown);
   }
 
   function handleMonacoMount(editor: MonacoEditorType) {
