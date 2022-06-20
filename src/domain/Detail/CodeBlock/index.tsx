@@ -21,7 +21,7 @@ const CodeBlock = (props: Code) => {
 
   const handleLineClick = (idx: number) => {
     setIndex(idx);
-    setClickedLine(true);
+    setClickedLine(!clickedLine);
   };
 
   const user = useContext(AuthContext);
@@ -52,7 +52,7 @@ const CodeBlock = (props: Code) => {
       {children.split('\n').map((code, idx) => {
         // if (!code) return;
         return (
-          <>
+          <Wrapper>
             <CodeLine onClick={() => handleLineClick(idx)}>
               <CodeContent>
                 <PlusBtn>+</PlusBtn>&nbsp;
@@ -64,7 +64,7 @@ const CodeBlock = (props: Code) => {
                 <ReviewTextArea
                   placeholder="리뷰를 입력하세요.."
                   autoFocus
-                  rows={8}
+                  rows={6}
                   cols={50}
                   required
                   ref={textareaRef}
@@ -72,12 +72,18 @@ const CodeBlock = (props: Code) => {
                 <ConfirmBtn type="submit">리뷰등록</ConfirmBtn>
               </ReviewForm>
             )}
-          </>
+          </Wrapper>
         );
       })}
     </div>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 
 const PlusBtn = styled(FlexCenter)`
   padding: 2px;
@@ -103,9 +109,7 @@ const CodeLine = styled.div`
   }
 `;
 
-const CodeContent = styled(FlexBox)`
-  height: 24px;
-`;
+const CodeContent = styled(FlexBox)``;
 
 const CodeArea = styled.div`
   font-size: 24px;
@@ -114,21 +118,30 @@ const CodeArea = styled.div`
 
 const ReviewForm = styled.form`
   text-align: right;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid black;
 `;
 
 const ReviewTextArea = styled.textarea`
   padding: 12px 8px;
   font-size: 18px;
+  margin: 12px 8px;
+  margin-bottom: 0px;
+  border-radius: 10px;
 `;
 
 const ConfirmBtn = styled.button`
   padding: 10px 14px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   border: 1px solid ${({ theme }) => theme.color.gray};
   background: ${({ theme }) => theme.color.lightgray};
   border-radius: 4px;
   cursor: pointer;
+  width: 100px;
+  margin: 6px 8px;
+  margin-left: auto;
 
   &:hover {
     background: ${({ theme }) => theme.color.gray};

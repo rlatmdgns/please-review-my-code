@@ -41,9 +41,6 @@ export const Content = styled.div`
   border: 1px solid black;
 `;
 export const CodeBlockContainer = styled(FlexBox)`
-  max-width: 500px;
-  height: 300px;
-
   > :nth-child(1) {
     flex: 2;
     border: 1px solid black;

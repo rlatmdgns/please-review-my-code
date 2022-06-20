@@ -30,7 +30,7 @@ const Detail = () => {
         author: data.authorInfo.displayName,
         category: data.category,
         code: data.code,
-        content: data.content,
+        content: data.markdown,
         date: data.date,
         tag: data.tag,
         title: data.title,
@@ -80,7 +80,6 @@ const Detail = () => {
 
         <Style.CodeBlockContainer>
           <CodeBlock postId={id}>{code}</CodeBlock>
-          <Box width="20px"></Box>
         </Style.CodeBlockContainer>
         <Box height="20px"></Box>
 
