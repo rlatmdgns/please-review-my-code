@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useAtom } from 'jotai';
 import { POST_SEND_ATOM } from 'store';
 import { Layout } from 'components/common/Layout';
-import { Category } from 'domain/Feed/Card/styles';
+import { Category } from './Category';
 import { TitleInput } from './TitleInput';
 import { Tag } from './Tag';
 import { Editor } from './Editor';
