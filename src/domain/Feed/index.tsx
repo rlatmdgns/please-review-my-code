@@ -4,16 +4,17 @@ import { Card } from './Card';
 // import { ICard } from '../utils/types/post';
 import { Layout } from '../../components/common/Layout';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { ICard, IFilter } from 'utils/types/post';
+import { Link } from 'react-router-dom';
 
-const categoryArray = ['디버깅', '클린코드', '아키텍처'];
+const categoryArray = ['전체', '디버깅', '클린코드', '아키텍처'];
 const skillArray = ['React', 'Javascript', 'Typescript'];
 
 // TODO: erase
 function getCardData(): Promise<ICard[]> {
   const dummyData: ICard[] = [
     {
+      id: 0,
       category: '디버깅',
       title: '제목제목',
       tag: ['Javascript', 'React'],
@@ -21,6 +22,7 @@ function getCardData(): Promise<ICard[]> {
       user: '아이',
     },
     {
+      id: 1,
       category: '클린코드',
       title: '우아아',
       tag: ['Typescript'],
@@ -37,15 +39,11 @@ const Feed = () => {
   const [cardData, setCardData] = useState<ICard[]>([]);
   const [cardFilter, setCardFilter] = useState<IFilter>({
     skill: undefined,
-    category: undefined,
+    category: '전체',
   });
-
-  // const [categoryFilter, setCategoryFilter] = useState<ICategory>();
-  // const [tagFilter, setTagFilter] = useState<ICard[]>();
 
   useEffect(() => {
     (async () => {
-      // await axios.get('http://localhost:8080');
       // TODO: erase
       const fetchedCardData = await getCardData();
       setCardData(fetchedCardData);
@@ -57,15 +55,12 @@ const Feed = () => {
     setCardFilter({ skill: undefined, category: category });
   };
 
-  // 혹시
-  //??
   const skillAll = ['React', 'Javascript', 'Typescript'];
 
   const handleFilter = (skill: string) => {
     setCardFilter({ ...cardFilter, skill: skill });
   };
 
-  // 여기서 처리할려고해요 렌더링 될 때
   const renderCardData = () => {
     const filteredData = cardData
       .filter((data) => {
@@ -73,10 +68,16 @@ const Feed = () => {
         return data.tag.includes(cardFilter.skill);
       })
       .filter((data) => {
-        if (!cardFilter.category) return true;
+        if (!cardFilter.category || cardFilter.category === '전체') return true;
         return data.category === cardFilter.category;
       });
-    return filteredData.map((card: ICard, idx) => <Card key={idx} card={card} />);
+    return filteredData.map((card: ICard, idx) => {
+      return (
+        <Link key={idx} to={'/detail/' + card.id}>
+          <Card card={card} />
+        </Link>
+      );
+    });
   };
 
   return (

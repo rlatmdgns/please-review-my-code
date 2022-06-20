@@ -1,13 +1,15 @@
 export interface Post {
   title?: string;
   content?: string;
+  code?: string;
   tag?: string[];
-  category?: string[];
+  category?: string;
   date?: string;
   comment?: Comment[];
 }
 
 export interface ICard {
+  id: number;
   category: string;
   title: string;
   tag: string[];
@@ -16,24 +18,12 @@ export interface ICard {
 }
 
 interface Comment {
-  id: string;
-  name: string;
+  id?: string;
+  name: string | null;
+  content: string;
 }
 
 export interface IFilter {
   category?: string;
   skill?: string;
 }
-
-// export interface ICategory {
-//   category?: string;
-// }
-
-// export interface ITag {
-//   tag?: string[];
-// }
-
-/**
- *  유저정보 받아오는 코드
- *  const user = useContext(AuthContext);
- */

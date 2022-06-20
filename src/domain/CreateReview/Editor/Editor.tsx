@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useSetAtom } from 'jotai';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 import { Editor as ToastEditor } from '@toast-ui/react-editor';
@@ -7,23 +8,17 @@ import MonacoEditor from '@monaco-editor/react';
 import styled from 'styled-components';
 import ToastuiEditor from '@toast-ui/editor';
 
-export type OnChangeType = {
-  contentHtml: string;
-  contentMarkdown: string;
-  code: string;
-};
-
-type Props = {
-  onChange?: (editor: OnChangeType) => void;
-};
+import { CONTENT_ATOM, CODE_ATOM } from 'store';
 
 type MonacoEditorType = {
   getValue: () => string;
 };
 
-const Editor = ({ onChange }: Props) => {
+const Editor = () => {
   const toastUiRef: any = useRef(null);
   const [monacoEditor, setMonacoEditor] = useState({} as MonacoEditorType);
+  const setContent = useSetAtom(CONTENT_ATOM);
+  const setCode = useSetAtom(CODE_ATOM);
 
   function handleChanged() {
     const editor = toastUiRef.current.getInstance() as ToastuiEditor;
@@ -38,7 +33,8 @@ const Editor = ({ onChange }: Props) => {
       code,
     };
 
-    onChange?.(args);
+    setContent(contentHtml);
+    setCode(code);
   }
 
   function handleMonacoMount(editor: MonacoEditorType) {

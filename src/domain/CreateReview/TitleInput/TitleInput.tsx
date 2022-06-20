@@ -1,12 +1,16 @@
 import React from 'react';
-import useInput from '../../../utils/hooks/useInput';
+import { useAtom } from 'jotai';
 import * as Style from './style';
+import { TITLE_ATOM } from 'store';
 
 const TitleInput = () => {
-  const [title, handleTitleChange] = useInput('');
+  const [titleAtom, setTitleAtom] = useAtom(TITLE_ATOM);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => setTitleAtom(event.target.value);
+
   return (
     <Style.Wrapper>
-      <Style.Input type="text" placeholder="제목을 입력하세요." value={title} onChange={handleTitleChange} />
+      <Style.Input type="text" placeholder="제목을 입력하세요." value={titleAtom} onChange={handleChange} />
     </Style.Wrapper>
   );
 };

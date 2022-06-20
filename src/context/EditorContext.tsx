@@ -1,13 +1,9 @@
 import React, { createContext, useState } from 'react';
 import useInput from '../utils/hooks/useInput';
 
-type EditorContextType = {
-  tag: string;
-  tags: string[];
-};
 const EditorContext = createContext({
   tag: '',
-  tags: [],
+  tags: [''],
   handleTagChange: (event: React.ChangeEvent<HTMLElement>) => {},
   handleKeyDown: (event: React.KeyboardEvent<HTMLElement>) => {},
 });

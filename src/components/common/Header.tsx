@@ -12,7 +12,7 @@ export const Header = () => {
   };
 
   const handleLoginButtonClick = async () => {
-    await signInWithPopup(auth, githubProvider);
+    const result = await signInWithPopup(auth, githubProvider);
   };
 
   const logout = async () => {

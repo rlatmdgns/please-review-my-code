@@ -25,9 +25,9 @@ export const TagItem = styled.li`
 export const Input = styled.input`
   position: relative;
   flex: 1;
-  padding: 2px 10px;
   border: 0;
-  font-size: 20px;
+  font-size: 1.2rem;
+  padding: 20px;
   color: #4e4e6b;
   &::placeholder {
     color: #4e4e6b;
