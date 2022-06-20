@@ -98,10 +98,9 @@ export class FbService {
       post.authorInfo = await this.getUserById(post.author);
     }
 
-    const posts = await this.getList<PostType>(TYPE_POSTS);
-    posts.sort((a, b) => b.editDate - a.editDate);
+    result.sort((a, b) => b.editDate - a.editDate);
 
-    return posts;
+    return result;
   }
 
   public async getCommentsByPostId(postId: string) {
