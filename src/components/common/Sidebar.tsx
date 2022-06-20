@@ -1,7 +1,11 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Sidebar = () => {
+  const { pathname } = useLocation();
+
+  const isDetail = pathname.startsWith('/detail');
+
   return (
     <Wrapper>
       <Title>
@@ -13,7 +17,9 @@ export const Sidebar = () => {
       </Title>
       <ul>
         <Menu>
-          <Link to="/">홈</Link>
+          <Link to="/" className={isDetail ? 'active' : ''}>
+            홈
+          </Link>
         </Menu>
         <Menu>
           <Link to="/createReview">질문 등록하기</Link>
