@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+=======
+import styled from 'styled-components';
+import { FlexBox, FlexColumn } from 'styles/theme';
+import { Card } from './Card';
+// import { ICard } from '../utils/types/post';
+import { Layout } from '../../components/common/Layout';
+>>>>>>> f78f7e84fae9fc7d592ee78fce156c7823d720ce
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
