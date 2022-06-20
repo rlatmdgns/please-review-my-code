@@ -4,7 +4,7 @@ import * as Style from './style';
 import Comment from './Comment';
 import CodeBlock from './CodeBlock';
 import { fbService } from 'utils/firebase/db';
-import { Box, FlexBox, FlexColumnCenter, Divider } from 'styles/theme';
+import { Box, FlexBox, Divider, FlexCenter } from 'styles/theme';
 import { Layout } from 'components/common/Layout';
 import 'github-markdown-css/github-markdown.css';
 
@@ -51,16 +51,14 @@ const Detail = () => {
           <Style.Profile>
             <img src="https://miro.medium.com/fit/c/66/66/0*npdL-nkO1eSZItis.jpg" alt="profile" />
           </Style.Profile>
-          <Box width="16px" />
 
-          <FlexBox gap={10}>{category}</FlexBox>
-          <Box height="20px"></Box>
+          {/* <Style.Category>{category}</Style.Category> */}
 
-          <FlexColumnCenter>
+          <FlexCenter>
+            <Box width="12px"></Box>
             <Style.Name>{author}</Style.Name>
-            <Box height="8px"></Box>
             <Style.Created>{date}</Style.Created>
-          </FlexColumnCenter>
+          </FlexCenter>
         </FlexBox>
         <Box height="20px"></Box>
 
@@ -68,8 +66,8 @@ const Detail = () => {
         <Box height="20px"></Box>
         <FlexBox gap={10}>
           {/* {tag.map((t: string) => (
-          <Style.Label>{t}</Style.Label>
-        ))} */}
+            <Style.Label>{t}</Style.Label>
+          ))} */}
         </FlexBox>
 
         <Box height="10px"></Box>
