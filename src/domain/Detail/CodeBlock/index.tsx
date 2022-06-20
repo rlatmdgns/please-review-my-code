@@ -61,7 +61,14 @@ const CodeBlock = (props: Code) => {
             </CodeLine>
             {index === idx && clickedLine && (
               <ReviewForm onSubmit={(e: FormEvent<HTMLFormElement>) => handleReviewSubmit(e)}>
-                <ReviewTextArea placeholder="리뷰를 입력하세요.." cols={40} ref={textareaRef} />
+                <ReviewTextArea
+                  placeholder="리뷰를 입력하세요.."
+                  autoFocus
+                  rows={8}
+                  cols={50}
+                  required
+                  ref={textareaRef}
+                />
                 <ConfirmBtn type="submit">리뷰등록</ConfirmBtn>
               </ReviewForm>
             )}
@@ -105,17 +112,28 @@ const CodeArea = styled.div`
   font-weight: 600;
 `;
 
-const ReviewForm = styled.form``;
+const ReviewForm = styled.form`
+  text-align: right;
+`;
 
 const ReviewTextArea = styled.textarea`
+  padding: 12px 8px;
   font-size: 18px;
 `;
 
 const ConfirmBtn = styled.button`
-  padding: 4px 8px;
-  border: none;
-  background: #c4c4c4;
+  padding: 10px 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid ${({ theme }) => theme.color.gray};
+  background: ${({ theme }) => theme.color.lightgray};
   border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background: ${({ theme }) => theme.color.gray};
+    color: ${({ theme }) => theme.color.white};
+  }
 `;
 
 export default CodeBlock;
