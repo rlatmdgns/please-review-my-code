@@ -6,6 +6,7 @@ import CodeBlock from './CodeBlock';
 import { fbService } from 'utils/firebase/db';
 import { Box, FlexBox, FlexColumnCenter, Divider } from 'styles/theme';
 import { Layout } from 'components/common/Layout';
+import 'github-markdown-css/github-markdown.css';
 
 const Detail = () => {
   const { id } = useParams();
@@ -70,7 +71,7 @@ const Detail = () => {
         <Box height="10px"></Box>
         <Divider height="1px" marginBottom="12px" />
 
-        <Style.Content>{content}</Style.Content>
+        <Style.Content className="markdown-body">{content}</Style.Content>
         <Box height="20px"></Box>
 
         <Style.CodeBlockContainer>
