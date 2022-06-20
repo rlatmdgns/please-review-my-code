@@ -4,6 +4,7 @@ import { FlexBox } from 'styles/theme';
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 300px;
   max-width: 320px;
   min-height: 350px;
   padding: 40px 32px;
