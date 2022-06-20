@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAtom } from 'jotai';
@@ -14,12 +14,15 @@ const CreateReview = () => {
   const user = useContext(AuthContext);
   const navigate = useNavigate();
   const [, sendPost] = useAtom(POST_SEND_ATOM);
+  const firstLoadCheckRef = useRef(false);
 
   useEffect(() => {
-    if (!user) {
+    if (!user && firstLoadCheckRef.current) {
       alert(`로그인하셔야 이용할 수 있습니다.`);
       navigate(`/`);
     }
+
+    firstLoadCheckRef.current = true;
 
     return () => {};
   }, [user]);
