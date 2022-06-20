@@ -1,5 +1,5 @@
 import { atom } from 'jotai';
-import { fbService } from 'utils/firebase/db/db';
+import { fbService } from 'utils/firebase/db';
 
 export const TITLE_ATOM = atom<string>('');
 export const CATEGORY_ATOM = atom<string>('');
