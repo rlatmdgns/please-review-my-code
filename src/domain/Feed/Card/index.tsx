@@ -1,4 +1,4 @@
-import { FlexBox, FlexCenter, Divider, Box } from 'styles/theme';
+import { FlexBox, FlexCenter, Divider, Box, Text } from 'styles/theme';
 import * as Style from './styles';
 import { Labels, Category, Title, Label, Date } from './styles';
 import { PostType } from 'utils/firebase/db';
@@ -16,17 +16,17 @@ export const Card = (props: { card: PostType }) => {
         ))} */}
       </Labels>
       <Date>{editDate.toString()}</Date>
-      <Divider />
-      <Style.BottomContainer>
+      <Divider height="1px" marginBottom="24px" />
+      <Style.Info>
         <FlexBox>
-          <Style.Writer>{author}</Style.Writer>
+          <Text size="12px">{author}</Text>
         </FlexBox>
         <FlexCenter>
-          <Style.Like>💙</Style.Like>
-          <Box width="10px" />
-          <Style.Comments>💬</Style.Comments>
+          <Text size="12px">💙</Text>
+          <Box width="12px" />
+          <Text size="12px">💬</Text>
         </FlexCenter>
-      </Style.BottomContainer>
+      </Style.Info>
     </Style.Wrapper>
   );
 };

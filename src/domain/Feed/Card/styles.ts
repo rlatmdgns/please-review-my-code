@@ -1,58 +1,45 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FlexBox, FlexColumn } from 'styles/theme';
+import { FlexBox } from 'styles/theme';
 
-// export const Wrapper = styled(Link)`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 200px;
+  max-width: 320px;
+  min-height: 350px;
+  padding: 40px 32px;
   border: 1px solid #dedede;
-  padding: 20px;
-  flex: 1 1 30%;
-  background: #fff;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.color.white};
 `;
 
 export const Category = styled.p`
-  font-size: 12px;
-  margin-bottom: 20px;
+  font-size: 14px;
+  margin-bottom: 18px;
 `;
 
 export const Title = styled.h2`
-  font-size: 1.5rem;
-  line-height: 150%;
+  min-height: 30px;
+  font-size: 22px;
+  margin-bottom: 36px;
 `;
 
 export const Labels = styled(FlexBox)`
   > *:not(:last-child) {
-    margin-right: 10px;
+    margin-right: 12px;
   }
 
-  margin: 20px 0;
+  margin: 24px 0;
 `;
 
 export const Label = styled.span`
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 export const Date = styled.p`
-  font-size: 8px;
-  margin-bottom: 10px;
+  color: ${({ theme }) => theme.color.gray};
+  margin-bottom: 24px;
 `;
 
-export const BottomContainer = styled(FlexBox)`
+export const Info = styled(FlexBox)`
   justify-content: space-between;
-  margin-top: 10px;
-`;
-export const Left = styled.div``;
-export const Writer = styled.div`
-  font-size: 12px;
-`;
-export const Right = styled.div``;
-export const Views = styled.div``;
-export const Like = styled.div`
-  font-size: 12px;
-`;
-export const Comments = styled.div`
-  font-size: 12px;
 `;

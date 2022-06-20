@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Card } from './Card';
 import { Layout } from 'components/common/Layout';
-import { FlexBox, FlexColumn } from 'styles/theme';
+import { FlexBox, FlexColumn, ThemeType } from 'styles/theme';
 import { IFilter } from 'utils/types/post';
 import { fbService, PostType } from 'utils/firebase/db';
 import { CATEGORIES, SKILLS } from 'utils/constants';
@@ -80,45 +80,46 @@ const Feed = () => {
 const CategoryBox = styled.ul`
   display: flex;
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   padding: 24px 0;
-  border-bottom: 1px solid #8e8e8e;
 `;
 
 const Category = styled.li<{ active?: boolean }>`
-  font-weight: 600;
-  text-align: center;
   min-width: 150px;
-  color: ${(props) => (props.active ? '#333' : '#8e8e8e')};
-  font-size: 1.2rem;
+  padding: 20px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: ${(props) => (props.active ? '#333333' : '#8391a2')};
+  text-align: center;
+  border-bottom: 3px solid ${({ theme }) => theme.color.black};
+  border-bottom-color: ${(props) => (props.active ? '#333333' : 'transparent')};
   cursor: pointer;
-  display: block;
-  padding: 24px 0;
-  border-bottom: 1px solid #333;
-  border-bottom-color: ${(props) => (props.active ? '#333' : 'transparent')};
-`;
-
-const CardContainer = styled(FlexBox)`
-  flex-wrap: wrap;
-  gap: 20px 10px;
 `;
 
 const Skills = styled.ul`
   display: flex;
-  margin-bottom: 30px;
-  gap: 24px;
+  margin-bottom: 70px;
 `;
 
 const Skill = styled.li`
   padding: 12px 20px;
-  border: 1px solid #dedede;
-  font-size: 1rem;
+  margin-right: 14px;
   font-weight: 600;
+  border: 2px solid ${({ theme }) => theme.color.lightgray};
   cursor: pointer;
 
   &:hover {
-    border-color: #a9a9a9;
+    border-color: ${({ theme }) => theme.color.gray};
   }
+
+  &:last-child {
+    margin-right: 0;
+  }
+`;
+
+const CardContainer = styled(FlexBox)`
+  flex-wrap: wrap;
+  gap: 24px 24px;
 `;
 
 export default Feed;

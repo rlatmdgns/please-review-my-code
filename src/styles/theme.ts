@@ -1,8 +1,14 @@
 import styled from 'styled-components';
 
-export const theme = {
+export interface ThemeType {
+  color: object;
+}
+
+export const theme: ThemeType = {
   color: {
-    primary: '#e7e7e7',
+    primary: '#313a46',
+    gray: '#8391a2',
+    lightgray: '#e7e7e7',
     white: '#ffffff',
     black: '#333333',
   },
@@ -11,6 +17,11 @@ export const theme = {
 export const Box = styled.div<{ width?: string; height?: string }>`
   ${(props) => props.width && `width: ${props.width}`};
   ${(props) => props.height && `height: ${props.height}`};
+`;
+
+export const Text = styled.p<{ size: string; weight?: string }>`
+  ${(props) => props.size && `font-size: ${props.size}`};
+  ${(props) => props.weight && `font-weight: ${props.weight}`};
 `;
 
 export const FlexBox = styled.div<{ gap?: number }>`
@@ -38,8 +49,8 @@ export const FlexColumnCenter = styled(FlexColumn)`
   justify-content: center;
 `;
 
-export const Divider = styled.hr`
+export const Divider = styled.div<{ height: string; marginBottom?: string }>`
   width: 100%;
-  border-top: 1px solid #8e8e8e;
-  margin: 0;
+  height: ${(props) => props.height};
+  ${(props) => props.marginBottom && `margin-bottom: ${props.marginBottom}`};
 `;

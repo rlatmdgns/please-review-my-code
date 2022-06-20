@@ -66,8 +66,7 @@ const Detail = () => {
       </FlexBox>
 
       <Box height="10px"></Box>
-      <Divider />
-      <Box height="10px"></Box>
+      <Divider height="1px" marginBottom="12px" />
 
       <Style.Content>{content}</Style.Content>
       <Box height="20px"></Box>
