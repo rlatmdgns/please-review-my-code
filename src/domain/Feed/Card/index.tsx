@@ -4,7 +4,7 @@ import { Labels, Category, Title, Label, Date } from './styles';
 import { PostType } from 'utils/firebase/db';
 
 export const Card = (props: { card: PostType }) => {
-  const { title, tags, editDate, category, author } = props.card;
+  const { title, authorInfo, tags, editDate, category } = props.card;
 
   const formatDate = () => {
     return editDate.toDate().toLocaleDateString('ko-KR');
@@ -23,7 +23,7 @@ export const Card = (props: { card: PostType }) => {
       <Divider height="1px" marginBottom="24px" />
       <Style.Info>
         <FlexBox>
-          <Text size="12px">{author}</Text>
+          <Text size="12px">{authorInfo?.displayName}</Text>
         </FlexBox>
         <FlexCenter>
           <Text size="12px">💙</Text>

@@ -38,6 +38,10 @@ const Detail = () => {
     })();
   }, [id]);
 
+  function createMarkup() {
+    return { __html: content };
+  }
+
   const { author, category, code, content, date, tag, title } = postData;
 
   return (
@@ -71,7 +75,7 @@ const Detail = () => {
         <Box height="10px"></Box>
         <Divider height="1px" marginBottom="12px" />
 
-        <Style.Content className="markdown-body">{content}</Style.Content>
+        <Style.Content className="markdown-body" dangerouslySetInnerHTML={createMarkup()} />
         <Box height="20px"></Box>
 
         <Style.CodeBlockContainer>
