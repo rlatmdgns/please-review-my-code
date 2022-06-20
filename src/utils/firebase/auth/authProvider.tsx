@@ -26,14 +26,14 @@ const AuthProvider = (props: Props) => {
     return auth.onAuthStateChanged(async (authUser) => {
       if (authUser) {
         await fbService.createUser(authUser);
-      }
-      console.log(`authUser`, authUser);
-      const AUTH_USER = authUser as IUser;
 
-      setUser(AUTH_USER);
-      setUserName(AUTH_USER?.reloadUserInfo?.screenName);
-      setUserImage(AUTH_USER?.photoURL);
-      setUserEmail(AUTH_USER?.email);
+        const AUTH_USER = authUser as IUser;
+
+        setUser(AUTH_USER);
+        setUserName(AUTH_USER?.reloadUserInfo?.screenName);
+        setUserImage(AUTH_USER?.photoURL);
+        setUserEmail(AUTH_USER?.email);
+      }
     });
   }, []);
 

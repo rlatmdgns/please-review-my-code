@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { useLocation, useNavigate, useRoutes } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAtom } from 'jotai';
 import { POST_SEND_ATOM } from 'store';
