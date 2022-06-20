@@ -20,7 +20,7 @@ export type PostType = {
   title: string;
   content: string;
   code: string;
-  editDate: Date;
+  editDate: any;
   author: string;
   tags: string[];
   category: string;

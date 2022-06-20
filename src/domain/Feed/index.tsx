@@ -1,17 +1,13 @@
-import styled from 'styled-components';
-import { FlexBox, FlexColumn } from 'styles/theme';
-import { Card } from './Card';
-// import { ICard } from '../utils/types/post';
-import { Layout } from '../../components/common/Layout';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Card } from './Card';
 import { Layout } from 'components/common/Layout';
-import { FlexBox, FlexColumn, ThemeType } from 'styles/theme';
+import { Card } from './Card';
+import { FlexBox, FlexColumn } from 'styles/theme';
 import { IFilter } from 'utils/types/post';
 import { fbService, PostType } from 'utils/firebase/db';
 import { CATEGORIES, SKILLS } from 'utils/constants';
+import { clearLine } from 'readline';
 
 const Feed = () => {
   const [categoryActiveIdx, setCategoryActiveIdx] = useState(0);
@@ -24,6 +20,7 @@ const Feed = () => {
   useEffect(() => {
     (async () => {
       const fetchedCardData = await fbService.getPosts();
+      // console.log(fetchedCardData[0].editDate);
       setCardData(fetchedCardData);
     })();
   }, []);
