@@ -6,6 +6,7 @@ import CodeBlock from './CodeBlock';
 import { fbService } from 'utils/firebase/db';
 import { Box, FlexBox, FlexColumnCenter, Divider } from 'styles/theme';
 import { Layout } from 'components/common/Layout';
+import { HTMLStringReg } from 'utils/format';
 
 const Detail = () => {
   const { id } = useParams();
@@ -29,7 +30,7 @@ const Detail = () => {
         author: data.author,
         category: data.category,
         code: data.code,
-        content: data.content,
+        content: data.content.replace(HTMLStringReg, ''),
         date: data.date,
         tag: data.tag,
         title: data.title,

@@ -1,8 +1,8 @@
 import { signInWithPopup, signOut } from 'firebase/auth';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { auth, githubProvider, AuthContext } from '../../utils/firebase';
 import { addDoc, collection } from 'firebase/firestore';
-import { db } from '../../utils/firebase/db';
+import { db, fbService } from '../../utils/firebase/db';
 
 const Sample = () => {
   const user = useContext(AuthContext);
@@ -35,6 +35,13 @@ const Sample = () => {
       console.error('Error adding document: ', e);
     }
   }
+
+  useEffect(() => {
+    (async () => {
+      const post = await fbService.getPostById('kVjL0FCUU5w3OM48nil5');
+      console.log(post);
+    })();
+  });
 
   return (
     <>

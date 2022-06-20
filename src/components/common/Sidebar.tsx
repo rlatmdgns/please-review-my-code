@@ -17,6 +17,9 @@ export const Sidebar = () => {
         <Menu>
           <Link to="/honor">명예의 전당</Link>
         </Menu>
+        <Menu>
+          <Link to="/guide">가이드</Link>
+        </Menu>
       </ul>
     </Wrapper>
   );
