@@ -7,6 +7,7 @@ import { IFilter } from 'utils/types/post';
 import { fbService, PostType } from 'utils/firebase/db';
 import { CATEGORIES, SKILLS } from 'utils/constants';
 import { clearLine } from 'readline';
+import { Link } from 'react-router-dom';
 
 const Feed = () => {
   const [categoryActiveIdx, setCategoryActiveIdx] = useState(0);
