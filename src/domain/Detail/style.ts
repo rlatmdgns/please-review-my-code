@@ -37,7 +37,7 @@ export const Label = styled.span`
   font-size: 14px;
 `;
 export const Content = styled.div`
-  height: 200px;
+  min-height: 400px;
   border: 1px solid black;
 `;
 export const CodeBlockContainer = styled(FlexBox)`
