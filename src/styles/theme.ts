@@ -52,5 +52,6 @@ export const FlexColumnCenter = styled(FlexColumn)`
 export const Divider = styled.div<{ height: string; marginBottom?: string }>`
   width: 100%;
   height: ${(props) => props.height};
+  background-color: #8391a2;
   ${(props) => props.marginBottom && `margin-bottom: ${props.marginBottom}`};
 `;

@@ -15,9 +15,9 @@ export const Card = (props: { card: PostType }) => {
       <Category>{category}</Category>
       <Title>{title}</Title>
       <Labels>
-        {/* {tags.map((tag) => (
+        {tags.map((tag) => (
           <Label>#{tag}</Label>
-        ))} */}
+        ))}
       </Labels>
       <Date>{formatDate()}</Date>
       <Divider height="1px" marginBottom="24px" />
