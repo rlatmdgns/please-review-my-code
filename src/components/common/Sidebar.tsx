@@ -1,21 +1,34 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Sidebar = () => {
+  const { pathname } = useLocation();
+
+  const isDetail = pathname.startsWith('/detail');
+
   return (
     <Wrapper>
       <Title>
-        <NavLink to="/">PLEVIEW</NavLink>
+        <NavLink to="/">
+          <img src="/images/logo.png" alt="" />
+          <br />
+          pleview
+        </NavLink>
       </Title>
       <ul>
         <Menu>
-          <Link to="/">홈</Link>
+          <Link to="/" className={isDetail ? 'active' : ''}>
+            홈
+          </Link>
         </Menu>
         <Menu>
           <Link to="/createReview">질문 등록하기</Link>
         </Menu>
         <Menu>
           <Link to="/honor">명예의 전당</Link>
+        </Menu>
+        <Menu>
+          <Link to="/guide">가이드</Link>
         </Menu>
       </ul>
     </Wrapper>
@@ -31,9 +44,13 @@ const Wrapper = styled.nav`
 
 const Title = styled.h1`
   text-align: center;
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 70px;
+  margin-bottom: 60px;
+  font-family: Arial, serif;
+
+  img {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
 
   a {
     display: block;

@@ -21,6 +21,10 @@ export default createGlobalStyle`
     vertical-align: baseline;
   }
 
+  * {
+    box-sizing: border-box;
+  }
+
   article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
     display: block;
@@ -53,12 +57,13 @@ export default createGlobalStyle`
     border-spacing: 0;
   }
 
-  * {
-    box-sizing: border-box;
-  }
-  
   a {
     color: #000;
     text-decoration: none;
+  }
+
+  textarea {
+    resize: none;
+    outline: none;
   }
 `;

@@ -8,7 +8,7 @@ import MonacoEditor from '@monaco-editor/react';
 import styled from 'styled-components';
 import ToastuiEditor from '@toast-ui/editor';
 
-import { CONTENT_ATOM, CODE_ATOM } from 'store';
+import { CONTENT_ATOM, CODE_ATOM, MARKDOWN_ATOM } from 'store';
 
 type MonacoEditorType = {
   getValue: () => string;
@@ -19,6 +19,7 @@ const Editor = () => {
   const [monacoEditor, setMonacoEditor] = useState({} as MonacoEditorType);
   const setContent = useSetAtom(CONTENT_ATOM);
   const setCode = useSetAtom(CODE_ATOM);
+  const setMarkdown = useSetAtom(MARKDOWN_ATOM);
 
   function handleChanged() {
     const editor = toastUiRef.current.getInstance() as ToastuiEditor;
@@ -27,14 +28,9 @@ const Editor = () => {
     const contentMarkdown = editor.getMarkdown();
     const code = monacoEditor?.getValue();
 
-    const args = {
-      contentHtml,
-      contentMarkdown,
-      code,
-    };
-
     setContent(contentHtml);
     setCode(code);
+    setMarkdown(contentMarkdown);
   }
 
   function handleMonacoMount(editor: MonacoEditorType) {
@@ -48,7 +44,7 @@ const Editor = () => {
 
         <EditorWrapper>
           <ToastEditor
-            initialValue="hello react editor world!"
+            initialValue=""
             previewStyle="vertical"
             height="600px"
             initialEditType="markdown"
@@ -65,7 +61,7 @@ const Editor = () => {
           onMount={handleMonacoMount}
           height="20vh"
           defaultLanguage="javascript"
-          defaultValue="// some comment"
+          defaultValue="//코드를 입력하세요"
           onChange={handleChanged}
         />
       </InputGroup>
@@ -75,6 +71,7 @@ const Editor = () => {
 
 const Wrapper = styled.div`
   margin: 2px 20px;
+  border: 1px solid #dedede;
 `;
 
 const Label = styled.label`
