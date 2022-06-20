@@ -6,6 +6,7 @@ import CodeBlock from './CodeBlock';
 import { fbService } from 'utils/firebase/db';
 import { Box, FlexBox, FlexColumnCenter, Divider } from 'styles/theme';
 import { Layout } from 'components/common/Layout';
+import 'github-markdown-css/github-markdown.css';
 
 const Detail = () => {
   const { id } = useParams();
@@ -26,7 +27,7 @@ const Detail = () => {
       console.log(data);
 
       setPostData({
-        author: data.author,
+        author: data.authorInfo.displayName,
         category: data.category,
         code: data.code,
         content: data.content,
@@ -36,6 +37,10 @@ const Detail = () => {
       });
     })();
   }, [id]);
+
+  function createMarkup() {
+    return { __html: content };
+  }
 
   const { author, category, code, content, date, tag, title } = postData;
 
@@ -70,7 +75,7 @@ const Detail = () => {
         <Box height="10px"></Box>
         <Divider height="1px" marginBottom="12px" />
 
-        <Style.Content>{content}</Style.Content>
+        <Style.Content className="markdown-body" dangerouslySetInnerHTML={createMarkup()} />
         <Box height="20px"></Box>
 
         <Style.CodeBlockContainer>
