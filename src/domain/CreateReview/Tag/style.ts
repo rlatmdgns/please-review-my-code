@@ -10,18 +10,24 @@ export const TagList = styled.ul`
   display: flex;
   align-items: center;
   margin: 0;
-  padding: 0;
   list-style: none;
+  background: #fff;
 `;
 
 export const TagItem = styled.li`
   padding: 5px 10px;
-  border-radius: 20px;
-  background: #eee;
-  color: #6667ab;
   font-weight: 500;
-  & + & {
-    margin-left: 10px;
+  cursor: pointer;
+  margin: 0 10px;
+  min-width: 50px;
+  text-align: center;
+  border: 1px solid #dedede;
+  background: #fff;
+  color: #333;
+
+  &:hover {
+    background: #313a46;
+    color: #fff;
   }
 `;
 
