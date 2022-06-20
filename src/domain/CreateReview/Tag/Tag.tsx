@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import * as Style from './style';
-// import { EditorContext, EditorProvider } from 'context/EditorContext';
 import { useAtom } from 'jotai';
 import { TAGS_ATOM } from 'store';
 
@@ -15,7 +14,9 @@ const Tag = () => {
     const TAG_EVENT_KEY = 'Enter';
 
     if (!tagInput) return;
+
     if (tags.length > TAG_MAX_LENGTH) return setTagInput('');
+
     if (event.key === TAG_EVENT_KEY) {
       setTags([...tags, tagInput]);
       setTagInput('');
@@ -23,12 +24,26 @@ const Tag = () => {
     }
   };
 
+  const toggleTag = (index: number) => {
+    tags.splice(index, 1);
+
+    setTags([...tags]);
+  };
+
   return (
-    // <EditorProvider>
     <Style.Wrapper>
       <Style.TagList>
-        {tags?.map((tagItem: string) => {
-          return <Style.TagItem key={tagItem}>{tagItem}</Style.TagItem>;
+        {tags?.map((tagItem: string, index) => {
+          return (
+            <Style.TagItem
+              key={index}
+              onClick={() => {
+                toggleTag(index);
+              }}
+            >
+              {tagItem}
+            </Style.TagItem>
+          );
         })}
       </Style.TagList>
       <Style.Input
@@ -39,7 +54,6 @@ const Tag = () => {
         onChange={handleTagChange}
       />
     </Style.Wrapper>
-    // </EditorProvider>
   );
 };
 
