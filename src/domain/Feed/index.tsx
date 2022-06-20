@@ -1,13 +1,12 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FlexBox, FlexColumn } from 'styles/theme';
-import { Layout } from '../../components/common/Layout';
-import { useEffect, useState } from 'react';
+import { Layout } from 'components/common/Layout';
 import { Card } from './Card';
 import { IFilter } from 'utils/types/post';
 import { fbService, PostType } from 'utils/firebase/db';
 import { CATEGORIES, SKILLS } from 'utils/constants';
-import { clearLine } from 'readline';
-import { Link } from 'react-router-dom';
 
 const Feed = () => {
   const [categoryActiveIdx, setCategoryActiveIdx] = useState(0);
