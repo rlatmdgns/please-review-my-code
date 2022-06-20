@@ -6,6 +6,10 @@ import { PostType } from 'utils/firebase/db';
 export const Card = (props: { card: PostType }) => {
   const { title, tags, editDate, category, author } = props.card;
 
+  const formatDate = () => {
+    return editDate.toDate().toLocaleDateString('ko-KR');
+  };
+
   return (
     <Style.Wrapper>
       <Category>{category}</Category>
@@ -15,7 +19,7 @@ export const Card = (props: { card: PostType }) => {
           <Label>#{tag}</Label>
         ))} */}
       </Labels>
-      <Date>{editDate.toString()}</Date>
+      <Date>{formatDate()}</Date>
       <Divider height="1px" marginBottom="24px" />
       <Style.Info>
         <FlexBox>
