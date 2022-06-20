@@ -13,8 +13,6 @@
 <p>Pleview는 초보 개발자들이 코드리뷰를 가볍게 경험해볼 수 있는 플랫폼 사이트에요.</p>
 <p>선배 개발자들의 도움을 받아 코드의 고수로 거듭나보세요! 😎</p>
 
-- [Figma](https://www.figma.com/file/eJMB98Z3fAHhQJUnyOxqTS/%ED%85%8C%EC%98%A4%EC%9D%98-%EC%8A%A4%ED%94%84%EB%A6%B0%ED%8A%B8-9%EA%B8%B0---3%EC%A1%B0?node-id=0%3A1)
-
 
 ## 🐩 기획 과정
 - [Figma](https://www.figma.com/file/eJMB98Z3fAHhQJUnyOxqTS/%ED%85%8C%EC%98%A4%EC%9D%98-%EC%8A%A4%ED%94%84%EB%A6%B0%ED%8A%B8-9%EA%B8%B0---3%EC%A1%B0?node-id=0%3A1)
