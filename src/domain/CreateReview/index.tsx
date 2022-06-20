@@ -1,15 +1,14 @@
-import { Layout } from 'components/common/Layout';
 import { useContext } from 'react';
-import { AuthContext } from 'utils/firebase';
-import { TitleInput } from './TitleInput';
-import { Tag } from './Tag';
-import { Category } from './Category';
-import { Editor } from './Editor';
-
-import { useAtom } from 'jotai';
-import { POST_SEND_ATOM } from 'store';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useAtom } from 'jotai';
+import { POST_SEND_ATOM } from 'store';
+import { Layout } from 'components/common/Layout';
+import { Category } from 'domain/Feed/Card/styles';
+import { TitleInput } from './TitleInput';
+import { Tag } from './Tag';
+import { Editor } from './Editor';
+import { AuthContext } from 'utils/firebase';
 
 const CreateReview = () => {
   const user = useContext(AuthContext);

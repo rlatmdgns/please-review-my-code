@@ -7,9 +7,9 @@ export const Sidebar = () => {
       <Title>
         <NavLink to="/">PLEVIEW</NavLink>
       </Title>
-      <Menus>
+      <ul>
         <Menu>
-          <Link to="/">Home</Link>
+          <Link to="/">홈</Link>
         </Menu>
         <Menu>
           <Link to="/createReview">질문 등록하기</Link>
@@ -17,47 +17,48 @@ export const Sidebar = () => {
         <Menu>
           <Link to="/honor">명예의 전당</Link>
         </Menu>
-      </Menus>
+      </ul>
     </Wrapper>
   );
 };
 
-const Title = styled.h1`
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 50px;
-
-  a {
-    color: #fff;
-    display: block;
-  }
-`;
-
 const Wrapper = styled.nav`
   min-width: 260px;
   min-height: 100vh;
-  background-color: #313a46;
-  padding: 20px;
+  background-color: ${({ theme }) => theme.color.primary};
+  padding: 40px;
 `;
 
-const Menus = styled.ul``;
+const Title = styled.h1`
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 70px;
+
+  a {
+    display: block;
+    color: ${({ theme }) => theme.color.white};
+  }
+`;
 
 const Menu = styled.li`
-  margin-bottom: 2rem;
+  margin-bottom: 60px;
 
   .active {
-    color: #fff;
+    color: ${({ theme }) => theme.color.white};
+  }
+
+  &:last-child {
+    margin-bottom: 0;
   }
 `;
 
 const Link = styled(NavLink)`
-  font-size: 1.1rem;
   display: block;
-  color: #8391a2;
-  text-decoration: none;
+  font-size: 20px;
+  color: ${({ theme }) => theme.color.gray};
 
   &:hover {
-    color: #fff;
+    color: ${({ theme }) => theme.color.white};
   }
 `;

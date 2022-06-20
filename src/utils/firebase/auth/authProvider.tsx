@@ -4,7 +4,7 @@ import { useSetAtom } from 'jotai';
 import { auth } from './auth';
 import { AuthContext } from './authContext';
 import { NAME_ATOM, IMAGE_ATOM, EMAIL_ATOM } from 'store';
-import { fbService } from 'utils/firebase/db/db';
+import { fbService } from 'utils/firebase/db';
 
 type Props = {
   children: ReactNode;

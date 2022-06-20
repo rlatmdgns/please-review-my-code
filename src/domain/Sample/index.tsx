@@ -2,7 +2,7 @@ import { signInWithPopup, signOut } from 'firebase/auth';
 import { useContext } from 'react';
 import { auth, githubProvider, AuthContext } from '../../utils/firebase';
 import { addDoc, collection } from 'firebase/firestore';
-import { db } from '../../utils/firebase/db/db';
+import { db } from '../../utils/firebase/db';
 
 const Sample = () => {
   const user = useContext(AuthContext);

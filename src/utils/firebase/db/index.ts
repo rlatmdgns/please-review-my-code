@@ -92,11 +92,6 @@ export class FbService {
 
   public async getPosts() {
     const results = await this.getList<PostType>(TYPE_POSTS);
-
-    results.forEach((item) => {
-      console.log(item);
-    });
-
     return results;
   }
 

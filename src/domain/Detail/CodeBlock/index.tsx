@@ -1,24 +1,18 @@
 import { FormEvent, useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { Box, FlexBox, FlexCenter } from 'styles/theme';
+import { FlexBox, FlexCenter } from 'styles/theme';
 import { AuthContext } from 'utils/firebase';
-import { fbService } from 'utils/firebase/db/db';
+import { fbService } from 'utils/firebase/db';
 
 interface Code {
   postId: string | undefined;
   children: string;
 }
 
-// inferface IComment {
-//   name: string | null | undefined,
-
-// }
-
 const CodeBlock = (props: Code) => {
   const { postId, children } = props;
   const [index, setIndex] = useState<number>(1);
   const [clickedLine, setClickedLine] = useState(false);
-  // const [renderTextArea, setRenderTextArea] = useState(false);
   const [comment, setComment] = useState({
     name: '',
     content: '',
@@ -32,14 +26,6 @@ const CodeBlock = (props: Code) => {
 
   const user = useContext(AuthContext);
 
-  /**
-   * interface Comment {
-      id?: string;
-      name: string;
-      content: string;
-    }
-   */
-
   const handleReviewSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -51,7 +37,7 @@ const CodeBlock = (props: Code) => {
   };
 
   useEffect(() => {
-    console.log(comment);
+    // console.log(comment);
     fbService.createComment({
       author: comment.name,
       content: comment.content,

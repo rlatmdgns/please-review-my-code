@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { auth, AuthContext, githubProvider } from '../../utils/firebase';
 import { useContext, useState } from 'react';
+import { FlexBox } from 'styles/theme';
 
 export const Header = () => {
   const user = useContext(AuthContext);
@@ -39,9 +40,9 @@ export const Header = () => {
   );
 };
 
-const Container = styled.div`
-  display: flex;
+const Container = styled(FlexBox)`
   flex-grow: 1;
+  height: 5vh;
   justify-content: right;
   align-items: flex-end;
 `;
