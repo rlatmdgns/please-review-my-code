@@ -5,7 +5,11 @@ export const Sidebar = () => {
   return (
     <Wrapper>
       <Title>
-        <NavLink to="/">PLEVIEW</NavLink>
+        <NavLink to="/">
+          <img src="/logo.png" alt="" />
+          <br />
+          pleview
+        </NavLink>
       </Title>
       <ul>
         <Menu>
@@ -34,9 +38,13 @@ const Wrapper = styled.nav`
 
 const Title = styled.h1`
   text-align: center;
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 70px;
+  margin-bottom: 60px;
+  font-family: Arial, serif;
+
+  img {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
 
   a {
     display: block;
