@@ -1,4 +1,4 @@
-import { FlexBox, FlexColumn } from 'styles/theme';
+import { FlexBox, FlexCenter, FlexColumn } from 'styles/theme';
 import styled from 'styled-components';
 
 export const Wrapper = styled(FlexColumn)`
@@ -17,12 +17,19 @@ export const Profile = styled.div`
   }
 `;
 
+export const Category = styled(FlexCenter)`
+  padding: 6px 12px;
+  color: ${({ theme }) => theme.color.white};
+  background: #07c;
+  border-radius: 8px;
+`;
+
 export const ProfileContainer = styled(FlexColumn)`
   justify-content: space-around;
 `;
 
 export const Name = styled.div`
-  font-size: 16px;
+  font-size: 18px;
 `;
 
 export const Created = styled.div`
@@ -34,7 +41,10 @@ export const Title = styled.h1`
 `;
 
 export const Label = styled.span`
+  display: block;
+  padding: 8px 14px;
   font-size: 14px;
+  background-color: #07c;
 `;
 export const Content = styled.div`
   min-height: 400px;
