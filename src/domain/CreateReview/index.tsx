@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { useLocation, useNavigate, useRoutes } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAtom } from 'jotai';
 import { POST_SEND_ATOM } from 'store';
@@ -12,8 +12,17 @@ import { AuthContext } from 'utils/firebase';
 
 const CreateReview = () => {
   const user = useContext(AuthContext);
-  const [, sendPost] = useAtom(POST_SEND_ATOM);
   const navigate = useNavigate();
+  const [, sendPost] = useAtom(POST_SEND_ATOM);
+
+  useEffect(() => {
+    if (!user) {
+      alert(`로그인하셔야 이용할 수 있습니다.`);
+      navigate(`/`);
+    }
+
+    return () => {};
+  }, [user]);
 
   async function handleRegister() {
     if (!user || Object.hasOwnProperty.call(user, 'uid') === false) return;

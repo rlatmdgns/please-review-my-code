@@ -44,7 +44,7 @@ const Editor = () => {
 
         <EditorWrapper>
           <ToastEditor
-            initialValue="hello react editor world!"
+            initialValue=""
             previewStyle="vertical"
             height="600px"
             initialEditType="markdown"
@@ -61,7 +61,7 @@ const Editor = () => {
           onMount={handleMonacoMount}
           height="20vh"
           defaultLanguage="javascript"
-          defaultValue="// some comment"
+          defaultValue="//코드를 입력하세요"
           onChange={handleChanged}
         />
       </InputGroup>
@@ -71,6 +71,7 @@ const Editor = () => {
 
 const Wrapper = styled.div`
   margin: 2px 20px;
+  border: 1px solid #dedede;
 `;
 
 const Label = styled.label`
