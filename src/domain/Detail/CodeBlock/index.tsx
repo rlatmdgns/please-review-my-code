@@ -37,7 +37,7 @@ const CodeBlock = (props: Code) => {
   };
 
   useEffect(() => {
-    console.log(comment);
+    // console.log(comment);
     fbService.createComment({
       author: comment.name,
       content: comment.content,

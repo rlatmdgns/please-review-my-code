@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Card } from './Card';
 import { Layout } from 'components/common/Layout';
-import { IFilter } from 'utils/types/post';
 import { FlexBox, FlexColumn } from 'styles/theme';
+import { IFilter } from 'utils/types/post';
 import { fbService, PostType } from 'utils/firebase/db';
 import { CATEGORIES, SKILLS } from 'utils/constants';
 
@@ -25,7 +25,7 @@ const Feed = () => {
 
   const handleClickCategory = (idx: number, category: string) => {
     setCategoryActiveIdx(idx);
-    setCardFilter({ skill: undefined, category });
+    setCardFilter({ ...cardFilter, category });
   };
 
   const handleFilter = (skill: string) => {
@@ -42,6 +42,7 @@ const Feed = () => {
         if (!cardFilter.category || cardFilter.category === '전체') return true;
         return data.category === cardFilter.category;
       });
+
     return filteredData.map((card: PostType, idx) => (
       <Link key={idx} to={'/detail/' + card.id}>
         <Card card={card} />
@@ -65,7 +66,7 @@ const Feed = () => {
         </CategoryBox>
         <Skills>
           {SKILLS.map((skill, idx) => (
-            <Skill key={idx} onClick={() => handleFilter(skill)}>
+            <Skill key={`${idx}_${skill}`} onClick={() => handleFilter(skill)}>
               {skill}
             </Skill>
           ))}
