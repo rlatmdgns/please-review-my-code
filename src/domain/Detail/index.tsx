@@ -80,7 +80,6 @@ const Detail = () => {
 
         <Style.CodeBlockContainer>
           <CodeBlock postId={id}>{code}</CodeBlock>
-          <Box width="20px"></Box>
         </Style.CodeBlockContainer>
         <Box height="20px"></Box>
 
