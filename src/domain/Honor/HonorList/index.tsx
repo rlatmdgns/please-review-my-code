@@ -1,6 +1,6 @@
-import styled from 'styled-components';
 import { HonorType } from '../index';
-import { List } from './List';
+import { List } from './List/List';
+import { Container, Title } from './styles';
 
 type Props = {
   title: string;
@@ -15,13 +15,3 @@ export const HonorList = ({ title, items }: Props) => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  margin: 40px 0;
-`;
-
-const Title = styled.h2`
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 40px;
-`;
