@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FlexBox, FlexColumn } from 'styles/theme';
@@ -32,23 +32,17 @@ const Feed = () => {
     setCardFilter({ ...cardFilter, skill });
   };
 
-  const renderCardData = () => {
-    const filteredData = cardData
-      .filter((data) => {
-        if (!cardFilter.skill) return true;
-        return data.tags.includes(cardFilter.skill);
-      })
+  const filteredData = useMemo(() => {
+    return cardData
       .filter((data) => {
         if (!cardFilter.category || cardFilter.category === '전체') return true;
         return data.category === cardFilter.category;
+      })
+      .filter((data) => {
+        if (!cardFilter.skill || cardFilter.skill === '전체') return true;
+        return data.tags.includes(cardFilter.skill);
       });
-
-    return filteredData.map((card: PostType, idx) => (
-      <Link key={idx} to={'/detail/' + card.id}>
-        <Card card={card} />
-      </Link>
-    ));
-  };
+  }, [cardData, cardFilter]);
 
   return (
     <Layout>
@@ -72,7 +66,15 @@ const Feed = () => {
           ))}
         </Skills>
       </FlexColumn>
-      <CardContainer>{renderCardData()}</CardContainer>
+      <CardContainer>
+        {filteredData.map((card) => {
+          return (
+            <Link key={card.id} to={'/detail/' + card.id}>
+              <Card card={card} />
+            </Link>
+          );
+        })}
+      </CardContainer>
     </Layout>
   );
 };
@@ -102,8 +104,12 @@ const Skills = styled.ul`
 `;
 
 const Skill = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 12px 20px;
   margin-right: 14px;
+  width: 100px;
   font-weight: 600;
   border: 2px solid ${({ theme }) => theme.color.lightgray};
   cursor: pointer;
