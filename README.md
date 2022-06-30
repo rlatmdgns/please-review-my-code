@@ -16,15 +16,35 @@
 ## 🎉 배포 링크
 ### [Pleview: Please Review My Code](https://pleview-898b3.web.app/)
 
+1. 홈(피드) 페이지
+![image](https://user-images.githubusercontent.com/68722179/176658700-abfe28a2-aba2-4ff6-a58b-6b95cdd85eff.png)
+
+2. 질문 등록 페이지
+![image](https://user-images.githubusercontent.com/68722179/176658865-496d2790-7cab-47f5-a14f-f64c35aabb4a.png)
+
+
+3. 상세(코드리뷰) 페이지
+![image](https://user-images.githubusercontent.com/68722179/176659350-753f4bf9-dfca-4a80-86b0-b6356eeeaa01.png)
+
+
+4. 명예의 전당
+![image](https://user-images.githubusercontent.com/68722179/176659455-9d842a86-9ed3-4fd9-8d6c-bede5e2a95eb.png)
+
+
 
 ## 🐩 기획 과정
 ### [Figma](https://www.figma.com/file/eJMB98Z3fAHhQJUnyOxqTS/%ED%85%8C%EC%98%A4%EC%9D%98-%EC%8A%A4%ED%94%84%EB%A6%B0%ED%8A%B8-9%EA%B8%B0---3%EC%A1%B0?node-id=0%3A1)
 
 ## ✨ 구현 기능
-- 피드(홈)
-- 질문 등록
-- 코드 리뷰하기(상세)
-- 명예의 전당
+1. 피드(홈)
+
+2. 질문 등록
+
+3. 코드 리뷰하기(상세)
+
+4. 명예의 전당
+
+
 
 ## 🧶 기술 스택
 ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
